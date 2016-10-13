@@ -11,10 +11,10 @@
 #define HEADERS_SYSTICK_H_
 
 typedef struct{
-	__RW uint32_t STCTRL;
-	__RW uint32_t STRELOAD;
-	__RW uint32_t STCURR;
-	__RW uint32_t STCALIB;
+	volatile uint32_t STCTRL;
+	volatile uint32_t STRELOAD;
+	volatile uint32_t STCURR;
+	volatile uint32_t STCALIB;
 }SYSTICK_T;
 
 /*Puntero a registro SYSTICK*/

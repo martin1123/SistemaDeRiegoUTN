@@ -10,7 +10,6 @@
 #ifndef HEADERS_TYPES_H_
 #define HEADERS_TYPES_H_
 
-#define __RW      volatile;
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
