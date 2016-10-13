@@ -7,12 +7,12 @@
 #define __GPIO__
 
 typedef struct{
-	__RW uint32_t fiodir;
-	__RW uint32_t reserved[3];
-	__RW uint32_t fiomask;
-	__RW uint32_t fiopin;
-	__RW uint32_t fioset;
-	__RW uint32_t fioclr;
+	volatile uint32_t fiodir;
+	volatile uint32_t reserved[3];
+	volatile uint32_t fiomask;
+	volatile uint32_t fiopin;
+	volatile uint32_t fioset;
+	volatile uint32_t fioclr;
 }GPIO_T;
 
 /*Puntero a registro GPIO0*/
