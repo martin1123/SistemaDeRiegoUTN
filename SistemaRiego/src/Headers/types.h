@@ -13,5 +13,6 @@
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
+typedef unsigned int registro_t;
 
 #endif /* HEADERS_TYPES_H_ */

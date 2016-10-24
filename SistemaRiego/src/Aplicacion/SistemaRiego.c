@@ -7,6 +7,33 @@ STATES_T state_flag;
  *encargada de atender una interrupcion*/
 void (*SSRV[])(void) = {inicializar, informar, obtenerHyTMaceta, obtenerHyTAmb, obtenerNivH2O, regar, alertaAgua};
 
+/*Variables globales*/
+
+//Humedad tierra
+volatile float humedad;
+
+//Temperatura ambiente
+volatile float temp;
+
+//Porcentaje de nivel de agua en tanque
+volatile uint8_t lvlH2O;
+
+//Buffer de recepcion UART
+volatile uint8_t BufferRx[BUFF_SIZE];
+
+//Indices de cola circular del Buffer de recepcion
+volatile uint8_t inxRxIn;
+volatile uint8_t inxRxOut;
+
+//Buffer de transmision UART
+volatile uint8_t BufferTx[BUFF_SIZE];
+
+//Indices de cola circular del Buffer de transmision
+volatile uint8_t inxTxIn;
+volatile uint8_t inxTxOut;
+
+volatile uint8_t TxStart;
+
 int main (void)
 {
 	/*El sistema arranca con su inicializacion*/
