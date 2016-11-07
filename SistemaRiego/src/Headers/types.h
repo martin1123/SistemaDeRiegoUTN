@@ -15,4 +15,6 @@ typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
 typedef uint32_t registro_t;
 
+typedef enum{OFF,ON} flagST_t;
+
 #endif /* HEADERS_TYPES_H_ */

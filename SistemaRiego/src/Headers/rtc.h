@@ -57,7 +57,8 @@
 #define RTCALMON       RTC[30]
 #define RTCALYEAR      RTC[31]
 
-void init_rtc(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t dd, uint8_t mo, uint16_t yy);
+#define PCRTC 9
+
 void config_date_RTC(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t dd, uint8_t mo, uint16_t yy);
 
 #endif /* HEADERS_RTC_H_ */

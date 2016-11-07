@@ -3,9 +3,9 @@
 /*Flag que indica la posicion de la rutina a invocar en el vector de rutinas*/
 STATES_T state_flag;
 
-/*SSRV (States Services Routines Vector): Vector de punteros a funciones. Cada funcion es una rutina
+/*SMV (States Machine Vector): Vector de punteros a funciones de cada estado.
  *encargada de atender una interrupcion*/
-void (*SSRV[])(void) = {inicializar, informar, obtenerHyTMaceta, obtenerHyTAmb, obtenerNivH2O, regar, alertaAgua};
+void (*SMV[])(void) = {inicializar, reposo, obtenerHyTMaceta, obtenerHyTAmb, obtenerNivH2O, regar, alertaAgua};
 
 /*Variables globales*/
 
@@ -34,6 +34,16 @@ volatile uint8_t inxTxOut;
 
 volatile uint8_t TxStart;
 
+/*FLAGS de sensores*/
+volatile flagST_t timer_temp = OFF;
+volatile flagST_t timer_humedad = OFF;
+volatile flagST_t timer_h2o = OFF;
+volatile flagST_t timer_Riego = OFF;
+volatile flagST_t f_UARTRx_cHora = OFF;
+volatile flagST_t f_UARTRx_regar = OFF;
+volatile flagST_t f_UARTRx_cAlarma = OFF;
+
+
 int main (void)
 {
 	/*El sistema arranca con su inicializacion*/
@@ -43,7 +53,7 @@ int main (void)
 	 *state_flag, para invocar a cada una de las rutinas definidas para el funcionamiento del sistema*/
 	while(1)
 	{
-		SSRV[state_flag]();
+		SMV[state_flag]();
 	}
 
 	return 0;

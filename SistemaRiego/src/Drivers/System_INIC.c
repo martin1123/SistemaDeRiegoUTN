@@ -25,4 +25,25 @@ void init_rtc(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t dd, uint8_t mo, uint16
 	RTCCIIR = 0x01UL; //Se genera interrupcion por segundo
 	RTCARM = 0xFFUL; //Inicialmente no se utiliza la alarma
 	ISER0  |= (1 << 17); //Se habilita interrupcion del RTC
+	PCONP |= (1 << PCRTC); //Se alimenta periferico
+}
+
+void InitPLL ( )
+{
+
+}
+
+void InitSensores()
+{
+
+}
+
+void InitBomba()
+{
+
+}
+
+void InitUART0()
+{
+
 }
