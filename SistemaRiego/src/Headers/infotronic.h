@@ -27,6 +27,7 @@ extern volatile flagST_t timer_Riego;
 extern volatile flagST_t f_UARTRx_cHora;
 extern volatile flagST_t f_UARTRx_regar;
 extern volatile flagST_t f_UARTRx_cAlarma;
+extern volatile flagST_t f_UARTRx_config;
 
 
 #define 	PCONP	(* ( ( registro_t  * ) 0x400FC0C4UL ))

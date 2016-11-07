@@ -42,6 +42,7 @@ volatile flagST_t timer_Riego = OFF;
 volatile flagST_t f_UARTRx_cHora = OFF;
 volatile flagST_t f_UARTRx_regar = OFF;
 volatile flagST_t f_UARTRx_cAlarma = OFF;
+volatile flagST_t f_UARTRx_config = OFF;
 
 
 int main (void)
