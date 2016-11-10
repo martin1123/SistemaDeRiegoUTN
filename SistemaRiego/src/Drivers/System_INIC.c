@@ -56,6 +56,11 @@ void initTimers()
 	initTimer3();
 }
 
+/*Configuracion:
+ * Match0: Timer Humedad
+ * Match1: Timer temperatura
+ * Match2: Timer nivel H2O y reinicio TC.
+ * */
 void initTimer0()
 {
 	PCONP |= (1<<1);

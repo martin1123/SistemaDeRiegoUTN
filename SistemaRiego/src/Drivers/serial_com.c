@@ -35,24 +35,3 @@ void UART1_IRQHandler (void)
     } while ((aux & 0x01) == 0); // me fijo si hay otra interrupcion pendiente -> b0 = 0
 
 }
-
-void PushRx (unsigned char dato)
-{
-  BufferRx[inxRxIn] = dato;           //recibo
-  inxRxIn++;
-  inxRxIn %= BUFF_SIZE;
-}
-
-int PopTx (void)
-{
-  int aux = 0;
-
-  if (inxTxIn != inxTxOut)
-    {
-      aux = BufferTx[inxTxOut];
-      inxTxOut ++;
-      inxTxOut %= BUFF_SIZE;
-    }
-
-  return aux;
-}

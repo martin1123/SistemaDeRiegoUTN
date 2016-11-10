@@ -33,3 +33,24 @@ void PushTx (unsigned char dato)
         U1THR= BufferTx[inxTxOut];
        }
 }
+
+void PushRx (unsigned char dato)
+{
+  BufferRx[inxRxIn] = dato;           //recibo
+  inxRxIn++;
+  inxRxIn %= BUFF_SIZE;
+}
+
+int PopTx (void)
+{
+  int aux = 0;
+
+  if (inxTxIn != inxTxOut)
+    {
+      aux = BufferTx[inxTxOut];
+      inxTxOut ++;
+      inxTxOut %= BUFF_SIZE;
+    }
+
+  return aux;
+}

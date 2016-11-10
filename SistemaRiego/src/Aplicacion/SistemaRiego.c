@@ -5,7 +5,7 @@ STATES_T state_flag;
 
 /*SMV (States Machine Vector): Vector de punteros a funciones de cada estado.
  *encargada de atender una interrupcion*/
-void (*SMV[])(void) = {inicializar, reposo, obtenerHyTMaceta, obtenerHyTAmb, obtenerNivH2O, regar, alertaAgua};
+void (*SMV[])(void) = {inicializar, reposo, obtenerHumedad, obtenerTempAmb, obtenerNivH2O, regar, alertaAgua};
 
 /*Variables globales*/
 
@@ -43,6 +43,11 @@ volatile flagST_t f_UARTRx_cHora = OFF;
 volatile flagST_t f_UARTRx_regar = OFF;
 volatile flagST_t f_UARTRx_cAlarma = OFF;
 volatile flagST_t f_UARTRx_config = OFF;
+volatile flagST_t UART_STATUS = OFF;
+volatile flagST_t TRANSMIT_H = OFF;
+volatile flagST_t TRANSMIT_TEMP = OFF;
+volatile flagST_t TRANSMIT_H2O = OFF;
+
 
 
 int main (void)
