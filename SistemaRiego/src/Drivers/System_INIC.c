@@ -47,3 +47,43 @@ void InitUART0()
 {
 
 }
+
+void initTimers()
+{
+	initTimer0();
+	initTimer1();
+	initTimer2();
+	initTimer3();
+}
+
+void initTimer0()
+{
+	PCONP |= (1<<1);
+	PCLKSEL0 |= (1<<2);
+	//Configurar MATCHS!!!
+	ISER0 |= (0x01 << 1);
+}
+
+void initTimer1()
+{
+	PCONP |= (1<<2);
+	PCLKSEL0 |= (1<<4);
+	//Configurar MATCHS!!!
+	ISER0 |= (0x01 << 2);
+}
+
+void initTimer2()
+{
+	PCONP |= (1<<22);
+	PCLKSEL1 |= (1<<12);
+	//Configurar MATCHS!!!
+	ISER0 |= (0x01 << 3);
+}
+
+void initTimer3()
+{
+	PCONP |= (1<<23);
+	PCLKSEL1 |= (1<<14);
+	//Configurar MATCHS!!!
+	ISER0 |= (0x01 << 4);
+}

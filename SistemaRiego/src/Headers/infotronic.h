@@ -10,6 +10,7 @@
 #include "serial.h"
 #include "rtc.h"
 #include "SysIni.h"
+#include "timers.h"
 
 //Humedad tierra
 extern volatile float humedad;
@@ -32,6 +33,13 @@ extern volatile flagST_t f_UARTRx_config;
 
 #define 	PCONP	(* ( ( registro_t  * ) 0x400FC0C4UL ))
 
-#define         ISER0                   (*( ( registro_t  * )  0xE000E100UL ))
+#define		PCLKSEL		( ( registro_t  * ) 0x400FC1A8UL )
+//!< Registros PCLKSEL
+#define		PCLKSEL0	PCLKSEL[0]
+#define		PCLKSEL1	PCLKSEL[1]
+
+#define     ISER0                   (*( ( registro_t  * )  0xE000E100UL ))
+
+
 
 #endif

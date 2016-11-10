@@ -20,4 +20,14 @@ void InitBomba();
 
 void InitUART0();
 
+void initTimers();
+
+void initTimer0();
+
+void initTimer1();
+
+void initTimer2();
+
+void initTimer3();
+
 #endif /* HEADERS_SYSINI_H_ */
