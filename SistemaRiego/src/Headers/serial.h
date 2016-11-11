@@ -32,4 +32,9 @@ extern volatile uint8_t inxTxIn;
 extern volatile uint8_t inxTxOut;
 extern volatile uint8_t TxStart;
 
+#define B_START 0x42
+#define B_STOP  0x53
+
+
+
 #endif /* HEADERS_SERIAL_H_ */

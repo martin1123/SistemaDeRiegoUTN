@@ -45,6 +45,9 @@ extern volatile flagST_t UART_STATUS;
 #define     ISER0                   (*( ( registro_t  * )  0xE000E100UL ))
 
 uint8_t isEnabledUART();
+uint8_t * armarTrama(uint8_t * dato, uint8_t sz);
+uint8_t calc_checksum(uint8_t * dato, uint8_t size);
+void liberarTrama(uint8_t * trama);
 uint8_t acceptable_level(uint8_t level);
 
 #endif
