@@ -48,19 +48,43 @@ volatile flagST_t TRANSMIT_H = OFF;
 volatile flagST_t TRANSMIT_TEMP = OFF;
 volatile flagST_t TRANSMIT_H2O = OFF;
 
+/*TIMERS*/
+
+#define TIMERS_CANT 8
+uint8_t timer_events;
+uint8_t timer_vector[TIMERS_CANT];
 
 
 int main (void)
 {
 	/*El sistema arranca con su inicializacion*/
-	state_flag = INICIAR;
-
+	//state_flag = INICIAR;
+	inicializar();
 	/*Los estados van a ir cambiando a medida que las interrupciones cambien el valor de la bandera
 	 *state_flag, para invocar a cada una de las rutinas definidas para el funcionamiento del sistema*/
 	while(1)
 	{
-		SMV[state_flag]();
+		//SMV[state_flag]();
+
+		/*Funcion que analiza timers vencidos*/
+		TimerEvent();
+		/*Maquina encargada de recopilar la informacion de los que envían los sensores*/
+		Sensors_Machine();
+		/*Maquina que maneja la recepción de datos por UART*/
+		Receive_Machine();
+		/*Maquina que se encarga de la transmisiónd e datos por UART*/
+		Transmit_Machine();
+		/*Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
+		Event_Machine();
+		/*Maquina que maneja el muestreo de información en el display 16X2*/
+		Display_machine();
+		/*Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario*/
+		Date_config_Machine();
 	}
 
 	return 0;
+}
+
+void TimerEvent(){
+
 }

@@ -11,12 +11,11 @@
 #define HEADERS_STATES_H_
 
 /*Estados de la bandera state_flag*/
-typedef enum{INICIAR = 0, REPOSO, GET_HUMEDAD, GET_TEMP_AMB, GET_H2O_LEVEL, REGAR, SIN_AGUA, INF_UART} STATES_T;
+typedef enum{INICIAR = 0, GET_HUMEDAD, GET_TEMP_AMB, GET_H2O_LEVEL, REGAR, SIN_AGUA, INF_UART} STATES_T;
 
 
 /*Estados del sistema*/
 void inicializar(void);
-void reposo(void);
 void obtenerHumedad(void);
 void obtenerTempAmb(void);
 void obtenerNivH2O(void);
