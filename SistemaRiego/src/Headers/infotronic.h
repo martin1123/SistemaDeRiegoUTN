@@ -11,9 +11,10 @@
 #include "rtc.h"
 #include "SysIni.h"
 #include "timers.h"
+#include "sensors.h"
 
 //Humedad tierra
-extern volatile float humedad;
+extern volatile uint8_t humedad;
 
 //Temperatura ambiente
 extern volatile float temp;

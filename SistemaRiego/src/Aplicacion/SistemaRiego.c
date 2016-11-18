@@ -5,12 +5,12 @@ STATES_T state_flag;
 
 /*SMV (States Machine Vector): Vector de punteros a funciones de cada estado.
  *encargada de atender una interrupcion*/
-void (*SMV[])(void) = {inicializar, reposo, obtenerHumedad, obtenerTempAmb, obtenerNivH2O, regar, alertaAgua};
+//void (*SMV[])(void) = {inicializar, reposo, obtenerHumedad, obtenerTempAmb, obtenerNivH2O, regar, alertaAgua};
 
 /*Variables globales*/
 
 //Humedad tierra
-volatile float humedad;
+volatile uint8_t humedad;
 
 //Temperatura ambiente
 volatile float temp;
@@ -54,6 +54,8 @@ volatile flagST_t TRANSMIT_H2O = OFF;
 uint8_t timer_events;
 uint8_t timer_vector[TIMERS_CANT];
 
+void ActualizarDatos ( void );
+void TimerEvent();
 
 int main (void)
 {
@@ -65,11 +67,10 @@ int main (void)
 	while(1)
 	{
 		//SMV[state_flag]();
-
+		//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.
+		ActualizarDatos();
 		/*Funcion que analiza timers vencidos*/
 		TimerEvent();
-		/*Maquina encargada de recopilar la informacion de los que envían los sensores*/
-		Sensors_Machine();
 		/*Maquina que maneja la recepción de datos por UART*/
 		Receive_Machine();
 		/*Maquina que se encarga de la transmisiónd e datos por UART*/
@@ -83,6 +84,14 @@ int main (void)
 	}
 
 	return 0;
+}
+
+/**/
+void ActualizarDatos ( void )
+{
+	temp = getTemp(temp);
+	humedad = getHumedad(humedad);
+	lvlH2O = getlvlH2O(lvlH2O);
 }
 
 void TimerEvent(){
