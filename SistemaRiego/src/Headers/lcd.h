@@ -41,5 +41,6 @@
 
 void InitLCD ( void );
 void Dato_LCD ( unsigned char data , unsigned char control );
+void Display_lcd( char *msg , char renglon , char posicion );
 
 #endif /* HEADERS_LCD_H_ */
