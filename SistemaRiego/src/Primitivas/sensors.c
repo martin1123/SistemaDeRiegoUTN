@@ -7,7 +7,7 @@
 #include "infotronic.h"
 #include "sensors.h"
 
-float getTemp(float t)
+short getTemp(short t)
 {
 	uint16_t result;
 	if(result = sensorTemp())

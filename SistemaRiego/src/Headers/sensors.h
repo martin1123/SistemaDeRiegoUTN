@@ -30,7 +30,7 @@
 #define	ADC2_VAL		ADC_VAL(AD0DR2)
 #define	ADC3_VAL		ADC_VAL(AD0DR3)
 
-float getTemp(float t);
+short getTemp(short t);
 uint8_t getHumedad(uint8_t h);
 uint8_t getlvlH2O(uint8_t lvl);
 uint16_t sensorTemp();

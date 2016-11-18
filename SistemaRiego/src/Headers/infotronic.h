@@ -12,16 +12,23 @@
 #include "SysIni.h"
 #include "timers.h"
 #include "sensors.h"
+#include "DisplayStates.h"
+#include "lcd.h"
 
 //Humedad tierra
 extern volatile uint8_t humedad;
 
 //Temperatura ambiente
-extern volatile float temp;
+extern volatile short temp;
+
+//Nivel de agua en tanque
+extern volatile uint8_t lvlH2O;
 
 //Porcentaje de nivel de agua en tanque
-extern volatile uint8_t lvlH2O;
-extern STATES_T state_flag;
+extern volatile flagST_t flag_H2OBajo;
+extern volatile flagST_t flag_regar;
+extern volatile flagST_t flag_config;
+extern volatile flagST_t flag_timerDisplay;
 extern volatile flagST_t timer_temp;
 extern volatile flagST_t timer_humedad;
 extern volatile flagST_t timer_h2o;

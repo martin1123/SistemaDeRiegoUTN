@@ -13,7 +13,7 @@ STATES_T state_flag;
 volatile uint8_t humedad;
 
 //Temperatura ambiente
-volatile float temp;
+volatile short temp;
 
 //Porcentaje de nivel de agua en tanque
 volatile uint8_t lvlH2O;
@@ -35,8 +35,10 @@ volatile uint8_t inxTxOut;
 volatile uint8_t TxStart;
 
 /*FLAGS de sensores*/
-volatile flagST_t timer_temp = OFF;
-volatile flagST_t timer_humedad = OFF;
+volatile flagST_t flag_H2OBajo = OFF;
+volatile flagST_t flag_regar = OFF;
+volatile flagST_t flag_config = OFF;
+volatile flagST_t flag_timerDisplay = OFF;
 volatile flagST_t timer_h2o = OFF;
 volatile flagST_t timer_Riego = OFF;
 volatile flagST_t f_UARTRx_cHora = OFF;
@@ -72,15 +74,15 @@ int main (void)
 		/*Funcion que analiza timers vencidos*/
 		TimerEvent();
 		/*Maquina que maneja la recepción de datos por UART*/
-		Receive_Machine();
+		//Receive_Machine();
 		/*Maquina que se encarga de la transmisiónd e datos por UART*/
-		Transmit_Machine();
+		//Transmit_Machine();
 		/*Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
-		Event_Machine();
+		//Event_Machine();
 		/*Maquina que maneja el muestreo de información en el display 16X2*/
 		Display_machine();
 		/*Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario*/
-		Date_config_Machine();
+		//Date_config_Machine();
 	}
 
 	return 0;
@@ -95,5 +97,20 @@ void ActualizarDatos ( void )
 }
 
 void TimerEvent(){
+
+}
+
+void Display_lcd( char *msg , char renglon , char posicion )
+{
+	unsigned char i ;
+
+	if( renglon )
+        posicion = posicion + 0xc0 ;
+	else
+		posicion = posicion + 0x80 ;
+
+	Dato_LCD( posicion , LCD_CONTROL );
+	for( i = 0 ; msg[ i ] != '\0' ; i++ )
+		Dato_LCD( msg[ i ] , LCD_DATA );
 
 }
