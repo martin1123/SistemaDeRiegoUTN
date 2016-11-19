@@ -39,3 +39,18 @@ uint8_t getlvlH2O(uint8_t lvl)
 
 	return lvl;
 }
+
+short convertToTemp(uint16_t n)
+{
+	return 1;
+}
+
+uint8_t convertToHum(uint16_t n)
+{
+	return 1;
+}
+
+uint8_t convertToLvlH2O(uint16_t n)
+{
+	return 1;
+}

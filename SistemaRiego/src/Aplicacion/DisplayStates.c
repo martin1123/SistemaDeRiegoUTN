@@ -88,7 +88,6 @@ void showDateAndHour(void)
 		f_states = Disp_HyT;
 
 	return;
-
 }
 
 void showConfigDate(void)

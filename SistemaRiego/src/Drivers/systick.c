@@ -17,6 +17,6 @@ void SysTick_Handler(void)
 	if(!centesimas)
 	{
 		centesimas = CENTESIMAS;
-		AnalizarTimers();
+		//AnalizarTimers();
 	}
 }
