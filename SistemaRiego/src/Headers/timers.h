@@ -8,6 +8,10 @@
 #ifndef HEADERS_TIMERS_H_
 #define HEADERS_TIMERS_H_
 
+#include "types.h"
+/*Cantidad de timers por software*/
+#define TIMERS_CANT 7
+
 #define T0IR   (*((registro_t *) 0x40004000UL))
 #define T1IR   (*((registro_t *) 0x40008000UL))
 #define T2IR   (*((registro_t *) 0x40090000UL))
@@ -82,5 +86,12 @@
 #define T1CTCR (*((registro_t *) 0x40008070UL))
 #define T2CTCR (*((registro_t *) 0x40090070UL))
 #define T3CTCR (*((registro_t *) 0x40094070UL))
+
+/*Declaraciones de funciones*/
+void TimerEvent(void);
+void TimerStop(uint8_t ev);
+void TimerStart(uint8_t ev, uint8_t time);
+void TimerClose(void);
+void AnalizarTimer(void);
 
 #endif /* HEADERS_TIMERS_H_ */

@@ -39,8 +39,12 @@ void showHyT(void)
 		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
 		f_states = Disp_Config_Date;
 	else if(flag_timerDisplay)
-		//Se pasa al estado que muestra en pantalla el nivel de agua
+	{
+		//Se pasa al estado que muestra en pantalla el nivel de agua y se cambia estado de flag
 		f_states = Disp_H2O;
+		flag_timerDisplay = OFF;
+	}
+
 
 	return;
 }
@@ -61,8 +65,11 @@ void showH2O(void)
 		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
 		f_states = Disp_Config_Date;
 	else if(flag_timerDisplay)
-		//Se pasa al estado que muestra en pantalla la fecha y hora
+	{
+		//Se pasa al estado que muestra en pantalla la fecha y hora y se cambia estado de flag
 		f_states = Disp_Date_Hour;
+		flag_timerDisplay = OFF;
+	}
 
 	return;
 }
@@ -84,8 +91,11 @@ void showDateAndHour(void)
 		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
 		f_states = Disp_Config_Date;
 	else if(flag_timerDisplay)
-		//Se pasa al estado que muestra en pantalla la humedad y temperatura
+	{
+		//Se pasa al estado que muestra en pantalla la humedad y temperatura y se cambia estado de flag
 		f_states = Disp_HyT;
+		flag_timerDisplay = OFF;
+	}
 
 	return;
 }

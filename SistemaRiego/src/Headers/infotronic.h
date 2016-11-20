@@ -4,7 +4,6 @@
 #include "types.h"
 #include "gpio.h"
 #include "systick.h"
-#include "states.h"
 #include "pinConf.h"
 #include "uart1.h"
 #include "serial.h"
@@ -14,6 +13,7 @@
 #include "sensors.h"
 #include "DisplayStates.h"
 #include "lcd.h"
+#include "EventStates.h"
 
 //Humedad tierra
 extern volatile uint8_t humedad;
@@ -41,6 +41,9 @@ extern volatile flagST_t TRANSMIT_H;
 extern volatile flagST_t TRANSMIT_TEMP;
 extern volatile flagST_t TRANSMIT_H2O;
 extern volatile flagST_t UART_STATUS;
+extern volatile flagST_t EXPIRED_ACK;
+extern volatile uint8_t timer_events;
+extern volatile uint8_t timer_vector[];
 
 
 #define 	PCONP	(* ( ( registro_t  * ) 0x400FC0C4UL ))

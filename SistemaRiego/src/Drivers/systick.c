@@ -6,17 +6,17 @@
  */
 #include "infotronic.h"
 
-#define CENTESIMAS 4
+#define DECIMAS 40
 
 void SysTick_Handler(void)
 {
-	static uint8_t centesimas = CENTESIMAS;
+	static uint8_t decimas = DECIMAS;
 
-	centesimas--;
+	decimas--;
 
-	if(!centesimas)
+	if(!decimas)
 	{
-		centesimas = CENTESIMAS;
-		//AnalizarTimers();
+		decimas = DECIMAS;
+		AnalizarTimer();
 	}
 }

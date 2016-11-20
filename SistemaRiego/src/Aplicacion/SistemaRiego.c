@@ -1,12 +1,5 @@
 #include "infotronic.h"
 
-/*Flag que indica la posicion de la rutina a invocar en el vector de rutinas*/
-STATES_T state_flag;
-
-/*SMV (States Machine Vector): Vector de punteros a funciones de cada estado.
- *encargada de atender una interrupcion*/
-//void (*SMV[])(void) = {inicializar, reposo, obtenerHumedad, obtenerTempAmb, obtenerNivH2O, regar, alertaAgua};
-
 /*Variables globales*/
 
 //Humedad tierra
@@ -35,12 +28,12 @@ volatile uint8_t inxTxOut;
 volatile uint8_t TxStart;
 
 /*FLAGS de sensores*/
-volatile flagST_t flag_H2OBajo = OFF;
-volatile flagST_t flag_regar = OFF;
-volatile flagST_t flag_config = OFF;
-volatile flagST_t flag_timerDisplay = OFF;
-volatile flagST_t timer_h2o = OFF;
-volatile flagST_t timer_Riego = OFF;
+volatile flagST_t flag_H2OBajo = OFF; //Configurado en ON. Configurar en OFF cuando se detecte nivel de agua estable
+volatile flagST_t flag_regar = OFF; //Configurado en ON. Configurar en OFF cuando se termine de regar. Recordar activar por presionar boton d eriego o por PC mediante UART.
+volatile flagST_t flag_config = OFF; //Configurar flag en ON y OFF
+volatile flagST_t flag_timerDisplay = OFF; //Configurar coomo timer 1
+volatile flagST_t timer_h2o = OFF; //Configurar. Ver que uso se le puede dar
+volatile flagST_t timer_Riego = OFF; //Configurar co
 volatile flagST_t f_UARTRx_cHora = OFF;
 volatile flagST_t f_UARTRx_regar = OFF;
 volatile flagST_t f_UARTRx_cAlarma = OFF;
@@ -49,15 +42,24 @@ volatile flagST_t UART_STATUS = OFF;
 volatile flagST_t TRANSMIT_H = OFF;
 volatile flagST_t TRANSMIT_TEMP = OFF;
 volatile flagST_t TRANSMIT_H2O = OFF;
+volatile flagST_t EXPIRED_ACK = OFF;
 
-/*TIMERS*/
-
-#define TIMERS_CANT 8
-uint8_t timer_events;
-uint8_t timer_vector[TIMERS_CANT];
+/*========================================*/
+/*                 TIMERS                 */
+/*========================================*/
+/*
+ * 1) Timer de refresco de Display
+ * 2) Timer de envio de temperatura por UART
+ * 3) Timer de envio de humedad por UART
+ * 4) Timer de envio de nivel de agua por UART
+ * 5) Timer de espera de confirmación de envío de mensajes por UART
+ * 6) Timer de regado
+ * 7) Timer de alarma cuando lvl h2o es bajo
+ */
+volatile uint8_t timer_events;
+volatile uint8_t timer_vector[TIMERS_CANT];
 
 void ActualizarDatos ( void );
-void TimerEvent();
 
 int main (void)
 {
@@ -78,7 +80,7 @@ int main (void)
 		/*Maquina que se encarga de la transmisiónd e datos por UART*/
 		//Transmit_Machine();
 		/*Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
-		//Event_Machine();
+		Event_Machine();
 		/*Maquina que maneja el muestreo de información en el display 16X2*/
 		Display_machine();
 		/*Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario*/
@@ -94,9 +96,11 @@ void ActualizarDatos ( void )
 	temp = getTemp(temp);
 	humedad = getHumedad(humedad);
 	lvlH2O = getlvlH2O(lvlH2O);
-}
 
-void TimerEvent(){
+	if(!acceptable_moisture())
+		flag_regar = ON;
 
+	if(!acceptable_level)
+		flag_H2OBajo = ON;
 }
 
