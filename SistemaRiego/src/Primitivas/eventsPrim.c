@@ -30,7 +30,6 @@ void activarAlarmaH2O(void)
 
 void desactivarAlarmaH2O(void)
 {
-	flag_H2OBajo = OFF;
 	return;
 }
 
