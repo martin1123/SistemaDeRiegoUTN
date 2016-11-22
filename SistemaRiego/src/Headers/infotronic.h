@@ -15,6 +15,7 @@
 #include "lcd.h"
 #include "EventStates.h"
 #include "transmit.h"
+#include "Commands.h"
 
 //Humedad tierra
 extern volatile uint8_t humedad;

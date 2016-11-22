@@ -61,6 +61,17 @@ volatile flagST_t EXPIRED_ACK = OFF;
 volatile uint8_t timer_events;
 volatile uint8_t timer_vector[TIMERS_CANT];
 
+/*******************************************/
+/*                 COMANDOS                */
+/*******************************************/
+typedef struct{
+	uint8_t subCommand;
+	uint8_t sz;
+}sub_command_t;
+
+
+command_t commands[] = {};
+
 void ActualizarDatos ( void );
 
 int main (void)
