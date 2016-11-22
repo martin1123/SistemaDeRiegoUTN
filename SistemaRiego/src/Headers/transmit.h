@@ -8,6 +8,8 @@
 #ifndef HEADERS_TRANSMIT_H_
 #define HEADERS_TRANSMIT_H_
 
+#define BUFF_TRAMA_SZ 16
+
 enum transmitState{NO_TRANS,TRANS_TEMP,TRANS_HUM,TRANS_LVLH2O,TRANS_ACK};
 
 void Transmit_Machine(void);

@@ -47,7 +47,7 @@ void transmitTemp(void)
 {
 	static flagST_t transmitiendo = OFF;
 	static flagST_t reintentos = 2;
-	static uint8_t *trama = NULL;
+	uint8_t trama[BUFF_TRAMA_SZ];
 
 	/*Primero se verifica si se esta transmitiendo un dato y esperando una respuesta o ack, o se
 	 * tiene que transmitir un dato nuevo*/
@@ -84,10 +84,10 @@ void transmitTemp(void)
 	{
 		//Se transmite dato nuevo
 		transmitiendo = ON;
-		if((trama = armarTrama()))
+		armarMensaje();
+		if(armarTrama(trama, BUFF_TRAMA_SZ, dato, szDato))
 		{
 			transmitir((char *)trama);
-			liberarTrama(uint8_t * trama);
 			//Iniciar timer de ack
 		}
 		else

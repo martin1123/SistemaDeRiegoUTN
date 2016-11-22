@@ -62,9 +62,8 @@ extern volatile uint8_t timer_vector[];
 #define ENTRADA 0
 
 uint8_t isEnabledUART();
-uint8_t * armarTrama(uint8_t * dato, uint8_t sz);
+uint8_t armarTrama(uint8_t *trama,uint8_t * dato, uint8_t sz);
 uint8_t calc_checksum(uint8_t * dato, uint8_t size);
-void liberarTrama(uint8_t * trama);
 uint8_t acceptable_level(uint8_t level);
 
 #endif

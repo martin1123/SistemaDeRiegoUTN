@@ -18,15 +18,13 @@ uint8_t isEnabledUART()
 
 /*Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
  * dato es el dato a enviar, y sz es el tamaño del dato*/
-uint8_t * armarTrama(uint8_t * dato, uint8_t sz)
+uint8_t armarTrama(uint8_t *trama, uint8_t tramaMaxSize,uint8_t * dato, uint8_t sz)
 {
 	uint8_t i, j;
-	uint8_t * trama = NULL;
 
-	trama = (uint8_t *) malloc((sz + SZ_CONTROL) * sizeof(uint8_t));
-
-	if(trama == NULL)
-		return trama;
+	//Caso en que el dato con los bytes de control sean mayores al buffer de la trama
+	if(tramaMaxSize < (sz + SZ_CONTROL + 1))
+		return 0;
 
 	trama[0] = B_START;
 	trama[1] = sz;
@@ -36,8 +34,9 @@ uint8_t * armarTrama(uint8_t * dato, uint8_t sz)
 
 	trama[i] = calc_checksum(dato, sz);
 	trama[++i] = B_STOP;
+	trama[++i] = 0;
 
-	return trama;
+	return 1;
 }
 
 uint8_t calc_checksum(uint8_t * dato, uint8_t size)
@@ -49,11 +48,6 @@ uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 		sum += (i+1) * dato[i];
 
 	return (uint8_t) (sum % 256);
-}
-
-void liberarTrama(uint8_t * trama)
-{
-	free((void *)trama);
 }
 
 void Transmitir (char *p)
