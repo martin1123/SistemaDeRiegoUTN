@@ -64,11 +64,6 @@ volatile uint8_t timer_vector[TIMERS_CANT];
 /*******************************************/
 /*                 COMANDOS                */
 /*******************************************/
-typedef struct{
-	uint8_t subCommand;
-	uint8_t sz;
-}sub_command_t;
-
 
 command_t commands[] = {};
 
