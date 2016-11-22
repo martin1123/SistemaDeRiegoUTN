@@ -66,6 +66,7 @@ volatile uint8_t timer_vector[TIMERS_CANT];
 /*******************************************/
 
 command_t commands[] = {};
+sub_command_t subInformar[] = {};
 
 void ActualizarDatos ( void );
 
