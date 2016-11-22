@@ -43,6 +43,7 @@ volatile flagST_t TRANSMIT_H = OFF;
 volatile flagST_t TRANSMIT_TEMP = OFF;
 volatile flagST_t TRANSMIT_H2O = OFF;
 volatile flagST_t TRANSMIT_ACK = OFF;
+volatile flagST_t RECEIVED_ACK = OFF; //Flag que indica si se recibio un ACK
 volatile flagST_t EXPIRED_ACK = OFF;
 
 /*========================================*/

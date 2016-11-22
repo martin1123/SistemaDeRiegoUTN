@@ -44,6 +44,7 @@ extern volatile flagST_t TRANSMIT_H2O;
 extern volatile flagST_t UART_STATUS;
 extern volatile flagST_t TRANSMIT_ACK;
 extern volatile flagST_t EXPIRED_ACK;
+extern volatile flagST_t RECEIVED_ACK;
 extern volatile uint8_t timer_events;
 extern volatile uint8_t timer_vector[];
 

@@ -55,3 +55,11 @@ void liberarTrama(uint8_t * trama)
 {
 	free((void *)trama);
 }
+
+void Transmitir (char *p)
+{
+    uint32_t i;
+
+    for (i=0; p[i]; ++i)
+         PushTx(p[i]);
+}

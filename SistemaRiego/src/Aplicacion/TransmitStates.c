@@ -45,16 +45,67 @@ void no_transmit(void)
 
 void transmitTemp(void)
 {
+	static flagST_t transmitiendo = OFF;
+	static flagST_t reintentos = 2;
+	static uint8_t *trama = NULL;
 
+	/*Primero se verifica si se esta transmitiendo un dato y esperando una respuesta o ack, o se
+	 * tiene que transmitir un dato nuevo*/
+	if(transmitiendo)
+	{
+		//Se verifica si fue recibida la confirmación del dato enviado
+		if(RECEIVED_ACK)
+		{
+			RECEIVED_ACK = OFF; //Desactiva flag
+			//desactiva timer de ack
+			transmitiendo = OFF;
+			reintentos = 2;
+			t_state = NO_TRANS;
+		}
+		else if(EXPIRED_ACK)
+		{
+			EXPIRED_ACK = OFF;
+			transmitiendo = OFF;//Cuando vuelva a entrar a la funcion, va a volver a transmitir el dato
+
+			if(reintentos--)
+			{
+				//reiniciar timer de ack
+			}
+			else
+			{
+				//Se acabaron los reintentos
+				reintentos = 2;
+				//desactivar timer ack
+				t_state = NO_TRANS;
+			}
+		}
+	}
+	else
+	{
+		//Se transmite dato nuevo
+		transmitiendo = ON;
+		if((trama = armarTrama()))
+		{
+			transmitir((char *)trama);
+			liberarTrama(uint8_t * trama);
+			//Iniciar timer de ack
+		}
+		else
+		{
+			transmitiendo = OFF;
+		}
+	}
 }
 
 void transmitHum(void)
 {
+	static flagST_t transmitiendo = OFF;
 
 }
 
 void transmitLvlH2O(void)
 {
+	static flagST_t transmitiendo = OFF;
 
 }
 
@@ -67,3 +118,5 @@ void transmitAck(void)
 {
 
 }
+
+
