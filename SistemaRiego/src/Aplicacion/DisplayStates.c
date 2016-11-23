@@ -30,20 +30,31 @@ void showHyT(void)
 	Display_lcd( msg_renglon , 1 , 0 );
 
 	if(flag_H2OBajo)
+	{
 		//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
+		refreshLCD();
 		f_states = Disp_H2O_Low;
+	}
 	else if(flag_regar)
+	{
 		//Se pasa al estado que muestra en pantalla un mensaje que indica que se esta regando
+		refreshLCD();
 		f_states = Disp_Riego;
+	}
+
 	else if(flag_config)
+	{
 		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
 		f_states = Disp_Config_Date;
+		refreshLCD();
+	}
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla el nivel de agua y se cambia estado de flag
 		f_states = Disp_H2O;
 		flag_timerDisplay = OFF;
 		TimerStart(0, 50);
+		refreshLCD();
 	}
 
 
@@ -57,20 +68,31 @@ void showH2O(void)
 	Display_lcd( " " , 1 , 0 );
 
 	if(flag_H2OBajo)
-			//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
+	{
+		refreshLCD();
+		//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
 		f_states = Disp_H2O_Low;
+	}
 	else if(flag_regar)
+	{
+		refreshLCD();
 		//Se pasa al estado que muestra en pantalla un mensaje que indica que se esta regando
 		f_states = Disp_Riego;
+	}
 	else if(flag_config)
+	{
 		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
 		f_states = Disp_Config_Date;
+		refreshLCD();
+	}
+
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla la fecha y hora y se cambia estado de flag
 		f_states = Disp_Date_Hour;
 		flag_timerDisplay = OFF;
 		TimerStart(0, 50);
+		refreshLCD();
 	}
 
 	return;
@@ -84,20 +106,30 @@ void showDateAndHour(void)
 	Display_lcd( msg_renglon , 1 , 0 );
 
 	if(flag_H2OBajo)
-			//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
+	{
+		//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
 		f_states = Disp_H2O_Low;
+		refreshLCD();
+	}
 	else if(flag_regar)
+	{
 		//Se pasa al estado que muestra en pantalla un mensaje que indica que se esta regando
 		f_states = Disp_Riego;
+		refreshLCD();
+	}
 	else if(flag_config)
+	{
 		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
 		f_states = Disp_Config_Date;
+		refreshLCD();
+	}
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla la humedad y temperatura y se cambia estado de flag
 		f_states = Disp_HyT;
 		flag_timerDisplay = OFF;
 		TimerStart(0, 50);
+		refreshLCD();
 	}
 
 	return;
@@ -105,6 +137,7 @@ void showDateAndHour(void)
 
 void showConfigDate(void)
 {
+	refreshLCD();
 	//COMPLETAR!!!!!
 	f_states = Disp_Date_Hour;
 }
@@ -115,9 +148,11 @@ void showH2OLow(void)
 	Display_lcd( "Recargue Tanque" , 1 , 0 );
 
 	if(flag_H2OBajo == OFF)
+	{
 		//Si se volvio a cargar el tanque, se muestra su nivel
 		f_states = Disp_HyT;
-
+		refreshLCD();
+	}
 	return;
 }
 
@@ -127,8 +162,18 @@ void showRiego(void)
 	Display_lcd( " " , 1 , 0 );
 
 	if(flag_regar == OFF)
+	{
 		//Si se termino de regar, se muestra temperatura y humedad
 		f_states = Disp_HyT;
+		refreshLCD();
+	}
+
 
 	return;
+}
+
+void refreshLCD(void)
+{
+	Display_lcd( SPACES , 0 , 0 );
+	Display_lcd( SPACES , 1 , 0 );
 }
