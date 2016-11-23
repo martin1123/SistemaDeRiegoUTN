@@ -28,7 +28,6 @@ void showHyT(void)
 	Display_lcd( msg_renglon , 0 , 0 );
 	sprintf(msg_renglon, "Humedad: %d\%", humedad);
 	Display_lcd( msg_renglon , 1 , 0 );
-	TimerStart(0, 50);
 
 	if(flag_H2OBajo)
 		//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
@@ -44,6 +43,7 @@ void showHyT(void)
 		//Se pasa al estado que muestra en pantalla el nivel de agua y se cambia estado de flag
 		f_states = Disp_H2O;
 		flag_timerDisplay = OFF;
+		TimerStart(0, 50);
 	}
 
 
@@ -55,7 +55,6 @@ void showH2O(void)
 	sprintf(msg_renglon, "Nivel H2O: %d\%", lvlH2O);
 	Display_lcd( msg_renglon , 0 , 0 );
 	Display_lcd( " " , 1 , 0 );
-	TimerStart(0, 50);
 
 	if(flag_H2OBajo)
 			//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
@@ -71,6 +70,7 @@ void showH2O(void)
 		//Se pasa al estado que muestra en pantalla la fecha y hora y se cambia estado de flag
 		f_states = Disp_Date_Hour;
 		flag_timerDisplay = OFF;
+		TimerStart(0, 50);
 	}
 
 	return;
@@ -82,7 +82,6 @@ void showDateAndHour(void)
 	Display_lcd( msg_renglon , 0 , 0 );
 	sprintf(msg_renglon, "Hora: %d:%d:%d", RTCHOUR, RTCMIN, RTCSEC);
 	Display_lcd( msg_renglon , 1 , 0 );
-	TimerStart(0, 50);
 
 	if(flag_H2OBajo)
 			//Se pasa al estado que muestra en pantalla Alerta de nivel de agua bajo
@@ -98,6 +97,7 @@ void showDateAndHour(void)
 		//Se pasa al estado que muestra en pantalla la humedad y temperatura y se cambia estado de flag
 		f_states = Disp_HyT;
 		flag_timerDisplay = OFF;
+		TimerStart(0, 50);
 	}
 
 	return;

@@ -76,11 +76,14 @@ int main (void)
 
 	while(1)
 	{
-		ActualizarDatos();//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.
+		/*MMA-SACAR COMENTARIO!!!
+		ActualizarDatos();//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.*/
 		TimerEvent();//Funcion que analiza timers vencidos
+		/*MMA-SACAR COMENTARIO!!!
 		Receive_Machine();//Maquina que maneja la recepción de datos por UART*/
+		/*MMA-SACAR COMENTARIO!!!
 		Transmit_Machine();//Maquina que se encarga de la transmisión de datos por UART
-		Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o
+		Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
 		Display_machine();//Maquina que maneja el muestreo de información en el display 16X2
 		//Date_config_Machine();//Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario
 	}

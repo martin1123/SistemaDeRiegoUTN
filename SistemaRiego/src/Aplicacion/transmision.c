@@ -18,6 +18,7 @@ uint8_t isEnabledUART()
 
 /*Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
  * dato es el dato a enviar, y sz es el tamaño del dato*/
+/*MMA-SACAR COMENTARIO!!!
 uint8_t armarTrama(uint8_t *trama, uint8_t tramaMaxSize,uint8_t * dato, uint8_t sz)
 {
 	uint8_t i, j;
@@ -37,7 +38,7 @@ uint8_t armarTrama(uint8_t *trama, uint8_t tramaMaxSize,uint8_t * dato, uint8_t 
 	trama[++i] = 0;
 
 	return 1;
-}
+}*/
 
 uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 {

@@ -84,6 +84,7 @@ void transmitTemp(void)
 	{
 		//Se transmite dato nuevo
 		transmitiendo = ON;
+/*MMA-SACAR COMENTARIO!!!
 		armarMensaje();
 		if(armarTrama(trama, BUFF_TRAMA_SZ, dato, szDato))
 		{
@@ -93,7 +94,7 @@ void transmitTemp(void)
 		else
 		{
 			transmitiendo = OFF;
-		}
+		}*/
 	}
 }
 
