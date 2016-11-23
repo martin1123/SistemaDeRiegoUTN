@@ -1,6 +1,7 @@
 #ifndef __INFOTRONIC__
 #define __INFOTRONIC__
 
+#include "ClockAndPll.h"
 #include "types.h"
 #include "gpio.h"
 #include "systick.h"
@@ -16,7 +17,6 @@
 #include "EventStates.h"
 #include "transmit.h"
 #include "Commands.h"
-#include "Regs.h"
 //Humedad tierra
 extern volatile uint8_t humedad;
 
