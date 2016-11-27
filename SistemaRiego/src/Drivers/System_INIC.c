@@ -102,6 +102,6 @@ void initTimers()
 	/* Inicializacion de timer de refresco de display
 	 * En principio, este es el unico timer que se va a utilizar*/
 	/*Refresco de pantalla cada 5 segundos*/
-	TimerStart(0, 50);
+	TimerStart(TIMER_EV_DISPLAY, 50);
 }
 

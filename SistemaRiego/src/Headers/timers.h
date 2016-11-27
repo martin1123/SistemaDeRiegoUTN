@@ -87,6 +87,15 @@
 #define T2CTCR (*((registro_t *) 0x40090070UL))
 #define T3CTCR (*((registro_t *) 0x40094070UL))
 
+/*Definicion de eventos TIMERS*/
+#define TIMER_EV_DISPLAY   0
+#define TIMER_EV_UART_TEMP 1
+#define TIMER_EV_UART_HUM  2
+#define TIMER_EV_UART_H2O  3
+#define TIMER_EV_UART_ACK  4
+#define TIMER_EV_RIEGO     5
+#define TIMER_EV_H2O_ALARM 6
+
 /*Declaraciones de funciones*/
 void TimerEvent(void);
 void TimerStop(uint8_t ev);
