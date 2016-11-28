@@ -1,6 +1,7 @@
 #ifndef __INFOTRONIC__
 #define __INFOTRONIC__
 
+#include "TransmitStates.h"
 #include "ClockAndPll.h"
 #include "types.h"
 #include "gpio.h"
@@ -15,8 +16,8 @@
 #include "DisplayStates.h"
 #include "lcd.h"
 #include "EventStates.h"
-#include "transmit.h"
 #include "Commands.h"
+#include "transmision.h"
 //Humedad tierra
 extern volatile uint8_t humedad;
 
@@ -61,10 +62,5 @@ extern volatile uint8_t timer_vector[];
 
 #define SALIDA 1
 #define ENTRADA 0
-
-uint8_t isEnabledUART();
-uint8_t armarTrama(uint8_t *trama,uint8_t * dato, uint8_t sz);
-uint8_t calc_checksum(uint8_t * dato, uint8_t size);
-uint8_t acceptable_level(uint8_t level);
 
 #endif

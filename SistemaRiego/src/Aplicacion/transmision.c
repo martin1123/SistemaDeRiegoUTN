@@ -5,7 +5,7 @@
  *      Author: Martin
  */
 #include "infotronic.h"
-#include <stdlib.h>
+#include "transmision.h"
 
 //Size de los byte de Start, tamaño, checksum, y stop
 #define SZ_CONTROL 4
@@ -18,9 +18,10 @@ uint8_t isEnabledUART()
 
 /*Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
  * dato es el dato a enviar, y sz es el tamaño del dato*/
-/*MMA-SACAR COMENTARIO!!!
-uint8_t armarTrama(uint8_t *trama, uint8_t tramaMaxSize,uint8_t * dato, uint8_t sz)
+
+uint8_t armarTrama(uint8_t *trama, uint8_t sz, enum transmitState s)
 {
+	/*
 	uint8_t i, j;
 
 	//Caso en que el dato con los bytes de control sean mayores al buffer de la trama
@@ -36,9 +37,9 @@ uint8_t armarTrama(uint8_t *trama, uint8_t tramaMaxSize,uint8_t * dato, uint8_t 
 	trama[i] = calc_checksum(dato, sz);
 	trama[++i] = B_STOP;
 	trama[++i] = 0;
-
+*/
 	return 1;
-}*/
+}
 
 uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 {
@@ -51,7 +52,7 @@ uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 	return (uint8_t) (sum % 256);
 }
 
-void Transmitir (char *p)
+void transmitir (char *p)
 {
     uint32_t i;
 

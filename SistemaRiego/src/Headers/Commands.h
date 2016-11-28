@@ -27,7 +27,8 @@
 
 typedef struct{
 	uint8_t subCommand;
-	uint8_t sz;
+	uint8_t sz; //Cantidad de bytes que ocupan los parametros del subcomando. Por ejemplo en temperatura va a ser un byte, mientras
+	            //que para fecha y hora van a ser 2 bytes
 }sub_command_t;
 
 typedef struct{
