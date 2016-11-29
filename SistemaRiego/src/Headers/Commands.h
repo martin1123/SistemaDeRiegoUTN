@@ -24,6 +24,22 @@
 #define SUB_HORA     0x48
 #define SUB_FECHA    0x46
 #define SUB_MACETA   0x41
+#define SUB_REGAR    0x52
+
+/*Posiciones en array de estructuras de los comandos y subcomandos*/
+#define POS_COM_INFORM     0
+#define POS_COM_CONF       1
+#define POS_COM_ACK        2
+#define POS_COM_REGAR      3
+#define POS_SUBCOM_HUMEDAD 0
+#define POS_SUBCOM_TEMP    1
+#define POS_SUBCOM_LVLH2O  2
+#define POS_SUBCOM_ALARM   3
+#define POS_SUBCOM_UMBRAL  0
+#define POS_SUBCOM_HORA    1
+#define POS_SUBCOM_FECHA   2
+#define POS_SUBCOM_TIMER   3
+#define POS_SUBCOM_ACK     0
 
 typedef struct{
 	uint8_t subCommand;
@@ -35,5 +51,12 @@ typedef struct{
 	uint8_t command;
 	sub_command_t *sub;
 }command_t;
+
+extern sub_command_t sub_informar[];
+extern sub_command_t sub_configurar[];
+extern sub_command_t sub_regar[];
+extern sub_command_t sub_ack[];
+extern command_t commands[];
+
 
 #endif /* HEADERS_COMMANDS_H_ */

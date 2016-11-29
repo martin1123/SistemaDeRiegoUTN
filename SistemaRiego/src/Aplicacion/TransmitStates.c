@@ -55,9 +55,9 @@ void transmitTemp(void)
 	 * se logra eliminar el codigo duplicado en cada estado que contempla esperar un ack.*/
 
 	/*NOTA: El dato solo debería ser la temperatura, y nada mas. Luego el protocolo  se deben definir estructuras*/
-	if(armarTrama(trama, BUFF_TRAMA_SZ, TRANS_TEMP))
+	if(armarTrama(trama, TRANS_TEMP))
 	{
-		transmitir((char *)trama);
+		transmitir(trama);
 		retransmit_state = TRANS_TEMP; //En caso de retransmision, se envía este estado
 		t_state = TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
 		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
@@ -68,12 +68,32 @@ void transmitTemp(void)
 
 void transmitHum(void)
 {
+	uint8_t trama[BUFF_TRAMA_SZ];
 
+	if(armarTrama(trama, TRANS_HUM))
+	{
+		transmitir(trama);
+		retransmit_state = TRANS_HUM; //En caso de retransmision, se envía este estado
+		t_state = TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
+		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
+	}
+	else
+		t_state = NO_TRANS;
 }
 
 void transmitLvlH2O(void)
 {
+	uint8_t trama[BUFF_TRAMA_SZ];
 
+	if(armarTrama(trama, TRANS_LVLH2O))
+	{
+		transmitir(trama);
+		retransmit_state = TRANS_LVLH2O; //En caso de retransmision, se envía este estado
+		t_state = TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
+		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
+	}
+	else
+		t_state = NO_TRANS;
 }
 
 void transmitRegando(void)
@@ -81,12 +101,18 @@ void transmitRegando(void)
 
 }
 
+/*Para este estado de transmision en particular, no se contempla que se reciba una confirmacion desde el otro dispositivo
+ * ya que en si, el envío de un ack, es una confirmación de que se recibio un mensaje.*/
 void transmitAck(void)
 {
+	uint8_t trama[BUFF_TRAMA_SZ];
 
+	armarTrama(trama, TRANS_ACK);
+	transmitir(trama);
+	t_state = NO_TRANS; //Se directamente al estado de reposo
 }
 
-/*Funcion */
+/*Estado que queda a la espera de que se reciba el ack por el dato transmitido*/
 void confirmTransmission(void)
 {
 	static uint8_t reintentos = 2;

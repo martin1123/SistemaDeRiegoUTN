@@ -9,9 +9,9 @@
 #define HEADERS_TRANSMISION_H_
 
 uint8_t isEnabledUART();
-uint8_t armarTrama(uint8_t *trama, uint8_t sz, enum transmitState);
+uint8_t armarTrama(uint8_t *trama, enum transmitState);
 uint8_t calc_checksum(uint8_t * dato, uint8_t size);
 uint8_t acceptable_level(uint8_t level);
-void transmitir (char *p);
+void transmitir (uint8_t *p);
 
 #endif /* HEADERS_TRANSMISION_H_ */
