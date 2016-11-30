@@ -75,7 +75,7 @@ uint8_t armarTrama(uint8_t *trama, enum transmitData s)
 	trama[2 + sz] = calc_checksum(trama+2, sz);//En trama[2] comienza el analisis de los datos. Comando, subcomando, y dato en si.
 	trama[2 + sz + 1] = B_STOP;
 
-	return 1;
+	return 2 + sz + 3; //Retorna size de la trama
 }
 
 uint8_t calc_checksum(uint8_t * dato, uint8_t size)
@@ -89,10 +89,10 @@ uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 	return (uint8_t) (sum % 256);
 }
 
-void transmitir (uint8_t *p)
+void transmitir (uint8_t *p, uint8_t sz)
 {
     uint32_t i;
 
-    for (i=0; i < BUFF_TRAMA_SZ; ++i)
+    for (i=0; i < sz; ++i)
          PushTx(p[i]);
 }

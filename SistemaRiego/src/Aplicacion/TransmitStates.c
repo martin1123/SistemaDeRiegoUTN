@@ -52,11 +52,12 @@ void no_transmit(void)
 void transmit_data(void)
 {
 	uint8_t trama[BUFF_TRAMA_SZ];
+	uint8_t sz_trama;
 
 	/*Se genera la trama segun el dato a transmitir*/
-	if(armarTrama(trama, dataToTrans))
+	if((sz_trama = armarTrama(trama, dataToTrans)) > 0)
 	{
-		transmitir(trama);
+		transmitir(trama, sz_trama);
 		t_state = STATE_TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
 		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
 	}
@@ -68,10 +69,11 @@ void transmit_data(void)
  * ya que en si, el envío de un ack, es una confirmación de que se recibio un mensaje.*/
 void transmitAck(void)
 {
+	uint8_t sz;
 	uint8_t trama[BUFF_TRAMA_SZ];
 
-	armarTrama(trama, TRANS_ACK);
-	transmitir(trama);
+	sz = armarTrama(trama, TRANS_ACK);
+	transmitir(trama, sz);
 	t_state = STATE_NO_TRANS; //Se directamente al estado de reposo
 }
 
