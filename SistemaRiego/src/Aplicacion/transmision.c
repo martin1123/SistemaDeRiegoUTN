@@ -19,7 +19,7 @@ uint8_t isEnabledUART()
 /*Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
  * dato es el dato a enviar, y sz es el tamaño del dato*/
 
-uint8_t armarTrama(uint8_t *trama, enum transmitState s)
+uint8_t armarTrama(uint8_t *trama, enum transmitData s)
 {
 	uint8_t sz, pos_command, pos_subcommand;
 	trama[0] = B_START;
@@ -44,6 +44,7 @@ uint8_t armarTrama(uint8_t *trama, enum transmitState s)
 			}
 
 			break;
+
 		case TRANS_HUM:
 			pos_command = POS_COM_INFORM;
 			pos_subcommand = POS_SUBCOM_HUMEDAD;

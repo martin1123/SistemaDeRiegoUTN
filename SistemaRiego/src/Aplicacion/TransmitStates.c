@@ -7,9 +7,9 @@
 #include "TransmitStates.h"
 #include "infotronic.h"
 
-void (*TMV[])() = {no_transmit,transmitTemp,transmitHum,transmitLvlH2O,transmitRegando,transmitAck,confirmTransmission};
-enum transmitState t_state = NO_TRANS;
-enum transmitState retransmit_state = NO_TRANS;
+void (*TMV[])() = {no_transmit,transmit_data,transmitAck,confirmTransmission};
+enum transmitState t_state = STATE_NO_TRANS;
+enum transmitData dataToTrans = NO_DATA;
 
 void Transmit_Machine(void)
 {
@@ -24,81 +24,44 @@ void no_transmit(void)
 		if(TRANSMIT_TEMP)
 		{
 			TRANSMIT_TEMP = OFF;
-			t_state = TRANS_TEMP;
+			dataToTrans = TRANS_TEMP;
 		}
 		else if(TRANSMIT_H)
 		{
 			TRANSMIT_H = OFF;
-			t_state = TRANS_HUM;
+			dataToTrans = TRANS_HUM;
 		}
 		else if(TRANSMIT_H2O)
 		{
 			TRANSMIT_H2O = OFF;
-			t_state = TRANS_LVLH2O;
+			dataToTrans = TRANS_LVLH2O;
 		}
 		else if(TRANSMIT_ACK)
 		{
+			/*En este caso particular, se pasa a un estado especial para la transmisión de Ack*/
 			TRANSMIT_ACK = OFF;
-			t_state = TRANS_ACK;
+			t_state = STATE_TRANS_ACK;
 		}
+
+		/*Si hay datos a transmitir pasa al estado de transmisión de datos*/
+		if(dataToTrans != NO_DATA)
+			t_state = STATE_TRANS_DATA;
 	}
 }
 
-void transmitTemp(void)
+void transmit_data(void)
 {
 	uint8_t trama[BUFF_TRAMA_SZ];
 
-	/*CAMBIO DE DISENO: El codigo dentro del if de abajo, va a pertenece a un nuevo estado denominado
-	 * ACK_STATE. Practicamente en este estado, se debe recibir de alguna forma, de que transmision
-	 * se espera un ack, Por ejemplo temperatudra. Si no se llega a recibir ack, se volvera al estado
-	 * de tempreratura a transmitir la temp nuevamente, hasta q se agoten reintentos. Con esto
-	 * se logra eliminar el codigo duplicado en cada estado que contempla esperar un ack.*/
-
-	/*NOTA: El dato solo debería ser la temperatura, y nada mas. Luego el protocolo  se deben definir estructuras*/
-	if(armarTrama(trama, TRANS_TEMP))
+	/*Se genera la trama segun el dato a transmitir*/
+	if(armarTrama(trama, dataToTrans))
 	{
 		transmitir(trama);
-		retransmit_state = TRANS_TEMP; //En caso de retransmision, se envía este estado
-		t_state = TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
+		t_state = STATE_TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
 		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
 	}
 	else
-		t_state = NO_TRANS;
-}
-
-void transmitHum(void)
-{
-	uint8_t trama[BUFF_TRAMA_SZ];
-
-	if(armarTrama(trama, TRANS_HUM))
-	{
-		transmitir(trama);
-		retransmit_state = TRANS_HUM; //En caso de retransmision, se envía este estado
-		t_state = TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
-		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
-	}
-	else
-		t_state = NO_TRANS;
-}
-
-void transmitLvlH2O(void)
-{
-	uint8_t trama[BUFF_TRAMA_SZ];
-
-	if(armarTrama(trama, TRANS_LVLH2O))
-	{
-		transmitir(trama);
-		retransmit_state = TRANS_LVLH2O; //En caso de retransmision, se envía este estado
-		t_state = TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
-		TimerStart(TIMER_EV_UART_ACK,50);//Iniciar timer de espera para recibir ack, sino retransmite
-	}
-	else
-		t_state = NO_TRANS;
-}
-
-void transmitRegando(void)
-{
-
+		t_state = STATE_NO_TRANS;
 }
 
 /*Para este estado de transmision en particular, no se contempla que se reciba una confirmacion desde el otro dispositivo
@@ -109,7 +72,7 @@ void transmitAck(void)
 
 	armarTrama(trama, TRANS_ACK);
 	transmitir(trama);
-	t_state = NO_TRANS; //Se directamente al estado de reposo
+	t_state = STATE_NO_TRANS; //Se directamente al estado de reposo
 }
 
 /*Estado que queda a la espera de que se reciba el ack por el dato transmitido*/
@@ -123,8 +86,8 @@ void confirmTransmission(void)
 		RECEIVED_ACK = OFF; //Desactiva flag
 		TimerStop(TIMER_EV_UART_ACK);//desactiva timer de ack
 		reintentos = 2;
-		t_state = NO_TRANS;
-		retransmit_state = NO_TRANS;
+		t_state = STATE_NO_TRANS;
+		dataToTrans = NO_DATA;
 	}
 	else if(EXPIRED_ACK)
 	{
@@ -133,15 +96,15 @@ void confirmTransmission(void)
 		if(reintentos--)
 		{
 			TimerStart(TIMER_EV_UART_ACK, 50);//reiniciar timer de ack
-			t_state = retransmit_state;
+			t_state = STATE_TRANS_DATA;
 		}
 		else
 		{
 			//Se acabaron los reintentos
 			reintentos = 2;
 			TimerStop(TIMER_EV_UART_ACK);//desactivar timer ack
-			t_state = NO_TRANS;
-			retransmit_state = NO_TRANS;
+			t_state = STATE_NO_TRANS;
+			dataToTrans = NO_DATA;
 		}
 	}
 }
