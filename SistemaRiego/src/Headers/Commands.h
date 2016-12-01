@@ -41,6 +41,13 @@
 #define POS_SUBCOM_TIMER   3
 #define POS_SUBCOM_ACK     0
 
+//Tamaño del vector de las estruturas
+#define SIZE_COMMANDS       4
+#define SIZE_SUB_INFORMAR   4
+#define SIZE_SUB_CONFIGURAR 4
+#define SIZE_SUB_REGAR      1
+#define SIZE_SUB_ACK        1
+
 typedef struct{
 	uint8_t subCommand;
 	uint8_t sz; //Cantidad de bytes que ocupan los parametros del subcomando. Por ejemplo en temperatura va a ser un byte, mientras

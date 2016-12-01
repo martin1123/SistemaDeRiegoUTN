@@ -18,6 +18,8 @@
 #include "EventStates.h"
 #include "Commands.h"
 #include "transmision.h"
+#include "receive.h"
+#include "Receive_States.h"
 //Humedad tierra
 extern volatile uint8_t humedad;
 
@@ -62,5 +64,6 @@ extern volatile uint8_t timer_vector[];
 
 #define SALIDA 1
 #define ENTRADA 0
+
 
 #endif
