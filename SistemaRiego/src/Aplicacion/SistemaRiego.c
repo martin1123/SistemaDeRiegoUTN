@@ -93,5 +93,7 @@ void ActualizarDatos ( void )
 
 	if(!acceptable_level)
 		flag_H2OBajo = ON;
+	else
+		flag_H2OBajo = OFF;
 }
 
