@@ -26,7 +26,9 @@ void Receive_Reposo(void)
 		{
 			r_state = R_RECEIVING;
 		}
+
 		//Si no hay un error de sincronizción
+
 	}
 }
 
@@ -35,22 +37,38 @@ void Receiving(void)
 	static uint8_t i = 0;
 	static uint8_t trama[BUFF_TRAMA_SZ];
 	int dato;
+	uint8_t sz;
 
-	//Si i es igual a 0 asigno el byte de start para tener la trama completa
+
+	//Si i es igual a 0 asigno el byte de start para tener la trama completa y verifico si se recibio el byte que indica size del comando, subcomando y datos
 	if(!i)
-		trama[i++] = B_START;
+	{
+		trama[0] = B_START;
+		dato = PopRx();
+
+
+		if(dato>=0)
+		{
+			trama[++i] = (uint8_t)dato;
+			sz = (uint8_t)dato + 4; //Size de la trama a recibir
+		}
+		else
+			return;
+	}
+
 
 	//Va llenando la trama con los datos de recepción hasta que la cola quede vacía, o hasta que se encuentre byte de stop
-	for(; i < 256 && (dato = PopRx()) >= 0; i++)
+	for(; i < sz && (dato = PopRx()) >= 0; i++)
 	{
 		trama[i] = (uint8_t) dato;
-		if(dato == B_STOP)
+		//Verifico si llego byte de stop, y que además llegue en la posición esperada
+		if(dato == B_STOP && i == (sz-1))
 			break;
 	}
 
 
 	//Si se da este caso, es porque hubo una desincronización. No pueden venir mas de 255 bytes en total.
-	if(i > 255)
+	if(i >= sz)
 	{
 		// Informar ERROR. No se transmite ACK. Se espera restransmision del dato.
 		i = 0;
