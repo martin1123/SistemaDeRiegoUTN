@@ -7,48 +7,23 @@
 #include "infotronic.h"
 #include "receive.h"
 
-int recepcionOk(uint8_t * trama, uint8_t size_trama)
+uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uint8_t *scpos)
 {
-	uint8_t sz;
-
-	//En el segunfo byte de la trama, se indica el tamaño en bytes del comando, subcomados, y el dato.
-	sz = trama[1];
-
-
-	//EL size de la trama - 4 es equivalente al size de los comandos, subcomandos y datos. Si son distintos ocurrio algun error.
-	if(sz != size_trama - 4)
-	{
-		//INFORMAR ERROR
-		return 0;
-	}
-
-	if(calc_checksum(trama+2, sz) != trama[2 + sz])
-	{
-		//ERROR EN CHECKSUM
-		return 0;
-	}
-
-	return 1;
-}
-
-void recuperarDato(uint8_t * trama, uint8_t size_datos)
-{
-	uint8_t i,j;
 	uint8_t sz_sub;
 
-	for(i = 0; i < SIZE_COMMANDS; i++)
+	for(*cpos = 0; *cpos < SIZE_COMMANDS; *cpos++)
 	{
 		//Si encontro comando
-		if(commands[i].command == trama[0])
+		if(commands[*cpos].command == trama[0])
 			break;
 	}
 
 	//Si no encontró el comando no se realiza ninguna accion por el momento
-	if(i == SIZE_COMMANDS)
+	if(*cpos == SIZE_COMMANDS)
 		//Se debería informar error????
-		return;
+		return 0;
 
-	switch(commands[i].command)
+	switch(commands[*cpos].command)
 	{
 		case COM_INFORMAR:
 			sz_sub = SIZE_SUB_INFORMAR;
@@ -66,18 +41,23 @@ void recuperarDato(uint8_t * trama, uint8_t size_datos)
 			break; //Este caso es imposible que pase
 	}
 
-	for(j = 0; j < sz_sub; j++)
+	for(*scpos = 0; *scpos < sz_sub; *scpos++)
 	{
 		//Si encontro comando
-		if(commands[i].sub[j].subCommand == trama[1])
+		if(commands[*cpos].sub[*scpos].subCommand == trama[1])
 			break;
 	}
 
 	//Si no encontró el subcomando no se realiza ninguna accion por el momento
-	if(j == sz_sub)
+	if(*scpos == sz_sub)
 		//Se debería informar error????
-		return;
+		return 0;
 
-	//EN este punto se encontro el comando y subcomando!!!
+	return 1;
+
+}
+
+void executeCommand(uint8_t comm_pos, uint8_t scomm_pos)
+{
 
 }

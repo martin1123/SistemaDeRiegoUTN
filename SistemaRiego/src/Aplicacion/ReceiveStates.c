@@ -37,7 +37,7 @@ void Receiving(void)
 	static uint8_t i = 0;
 	static uint8_t trama[BUFF_TRAMA_SZ];
 	int dato;
-	uint8_t sz;
+	uint8_t sz, cpos, scpos;
 
 
 	//Si i es igual a 0 asigno el byte de start para tener la trama completa y verifico si se recibio el byte que indica size del comando, subcomando y datos
@@ -58,7 +58,7 @@ void Receiving(void)
 
 
 	//Va llenando la trama con los datos de recepción hasta que la cola quede vacía, o hasta que se encuentre byte de stop
-	for(; i < sz && (dato = PopRx()) >= 0; i++)
+	for(i = 2; i < sz && (dato = PopRx()) >= 0; i++)
 	{
 		trama[i] = (uint8_t) dato;
 		//Verifico si llego byte de stop, y que además llegue en la posición esperada
@@ -78,16 +78,19 @@ void Receiving(void)
 
 	//Caso en que se recibio la trama hasta el byte de STOP. Se procede a realiza el checksum.
 	//Luego se informa el dato recibido.
-	if(dato == B_STOP)
+	if(dato == B_STOP && i == (sz-1))
 	{
 		//La proxima transición es al estado de reposo
 		r_state = R_REPOSO;
 
-		//i + 1 es el tamaño en bytes de la trama
-		if(recepcionOk(trama, i+1))
+		//Verifica checksum de comando, subcomando, y datos. trama[1] almacena el size de estos datos. trama[sz-2] almacena el checksum enviado.
+		if(calc_checksum(trama+2, trama[1]) == trama[sz-2])
 		{
-			//Recupera desde que comienza el comando, hasta el último byte que ocupa un dato. Desde
-			recuperarDato(trama + 2, i-3);
+			//Verifica que comando se recibio. En caso de no recibir un comando válido no se realiza ninguna acción.
+			if(verificarComando(trama+2, i-3, &cpos, &scpos))
+				//Verificado el comando, se procede a ejecutarlo
+				executeCommand(cpos,scpos);
+
 			i = 0;
 		}
 		else
