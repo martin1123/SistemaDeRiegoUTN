@@ -59,5 +59,45 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 
 void executeCommand(uint8_t comm_pos, uint8_t scomm_pos)
 {
+	switch(commands[comm_pos].command)
+	{
+		case COM_ACK:
+			RECEIVED_ACK = ON;
+			break;
 
+		case COM_REGAR:
+			flag_regar = ON;
+			break;
+
+		case COM_CONFIG:
+			config(scomm_pos);
+			break;
+
+		default:
+			break;
+	}
+}
+
+void config(uint8_t scomm_pos)
+{
+	switch(commands[POS_COM_REGAR].sub->subCommand)
+	{
+		case SUB_TIME_R:
+			break;
+
+		case SUB_HORA:
+			break;
+
+		case SUB_FECHA:
+			break;
+
+		case SUB_UMBRAL_H:
+			break;
+
+		case SUB_ALARM:
+			break;
+
+		default:
+			break;
+	}
 }
