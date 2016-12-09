@@ -84,12 +84,19 @@ void InitPLL ( )
 
 void InitSensores()
 {
-
+	//Configuracion de los sensores
+	conf_gpio(PORT_NTC,PIN_NTC,IN);
+	conf_gpio(PORT_H2O,PIN_H2O,IN);
+	conf_gpio(PORT_HUM,PIN_HUM,IN);
+	setPinMode(PORT_NTC,PIN_NTC,PULL_UP);
+	setPinMode(PORT_H2O,PIN_H2O,PULL_UP);
+	setPinMode(PORT_HUM,PIN_HUM,PULL_UP);
 }
 
 void InitBomba()
 {
-
+	//conf_gpio(PORT_BOMB,PORT_BOMB,OUT);
+	//setPin(PORT_BOMB,PORT_BOMB,0);
 }
 
 void InitUART0()

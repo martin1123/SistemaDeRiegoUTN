@@ -26,4 +26,8 @@ typedef struct{
 
 #define conf_gpio(port,pin,dir) {(*(DIR_PINSEL0 + (port * 2) + (pin / 16)) &= ~(0x3 <<((pin%16) * 2))); set_dir(port,pin,dir);}
 
+#define PULL_UP 0
+#define IN      0
+#define OUT     1
+
 #endif

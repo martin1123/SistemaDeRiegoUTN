@@ -25,6 +25,7 @@ volatile uint8_t BufferTx[BUFF_SIZE];
 volatile uint8_t inxTxIn;
 volatile uint8_t inxTxOut;
 
+//Flag que indica si se estan transmitiendo datos
 volatile uint8_t TxStart;
 
 /*FLAGS de sensores*/
@@ -73,7 +74,7 @@ int main (void)
 		TimerEvent();//Funcion que analiza timers vencidos
 		Receive_Machine();//Maquina que maneja la recepción de datos por UART
 		Transmit_Machine();//Maquina que se encarga de la transmisión de datos por UART
-		//Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
+		Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
 		Display_machine();//Maquina que maneja el muestreo de información en el display 16X2
 		//Date_config_Machine();//Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario
 	}
@@ -88,10 +89,10 @@ void ActualizarDatos ( void )
 	humedad = getHumedad(humedad);
 	lvlH2O = getlvlH2O(lvlH2O);
 
-	if(!acceptable_moisture())
+	if(!acceptable_moisture(humedad))
 		flag_regar = ON;
 
-	if(!acceptable_level)
+	if(!acceptable_level(lvlH2O))
 		flag_H2OBajo = ON;
 	else
 		flag_H2OBajo = OFF;

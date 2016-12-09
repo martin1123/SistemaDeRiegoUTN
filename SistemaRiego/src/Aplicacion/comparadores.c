@@ -12,7 +12,7 @@
 	 * no solo el nivel de humedad, sino tmb el tiempo que haya pasado desde el ulitmo regado,
 	 * ya que puede pasar que la humedad luego de un regado no se actualice a el valor correcto
 	 * sino hasta esperar un tiempo razonable en el que el agua se distribuya en la tierra.*/
-uint8_t acceptable_moisture(float h)
+uint8_t acceptable_moisture(uint8_t h)
 {
 	return 1;
 }

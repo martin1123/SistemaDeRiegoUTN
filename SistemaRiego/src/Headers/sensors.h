@@ -30,6 +30,14 @@
 #define	ADC2_VAL		ADC_VAL(AD0DR2)
 #define	ADC3_VAL		ADC_VAL(AD0DR3)
 
+//Puertos y pines de los sensores
+#define PORT_NTC  0
+#define PIN_NTC   0
+#define PORT_H2O  0
+#define PIN_H2O   0
+#define PORT_HUM  0
+#define PIN_HUM   0
+
 short getTemp(short t);
 uint8_t getHumedad(uint8_t h);
 uint8_t getlvlH2O(uint8_t lvl);
