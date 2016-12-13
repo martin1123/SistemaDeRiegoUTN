@@ -1,9 +1,10 @@
-/*
- * timers.c
- *
- *  Created on: 20 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file timers.c
+	\brief Maquina de timers.
+	\details Completar
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "timers.h"
 #include "infotronic.h"
 

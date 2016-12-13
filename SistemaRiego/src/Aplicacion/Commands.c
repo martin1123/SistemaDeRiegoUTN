@@ -1,9 +1,12 @@
-/*
- * Commands.c
- *
- *  Created on: 28 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file Commands.c
+	\brief Comandos de comunicacion
+	\details Definicion de los comandos utilizados para la comunicacion con la computadora
+	         a través de puerto serie.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
+
 #include "infotronic.h"
 #include "Commands.h"
 

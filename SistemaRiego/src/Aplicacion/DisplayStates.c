@@ -1,9 +1,14 @@
-/*
- * DisplayStates.c
- *
- *  Created on: 17 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file DisplayStates.c
+	\brief Maquina de estados del LCD 16X2.
+	\details Maquina de estados que se encarga de mostrar la información en el
+	         Display 16X2, sin afectar el funcionamiento del resto del sistema.
+	         Muestra: Fecha y hora; Humedad y temperatura; Porcentaje de nivel de agua
+	                  en tanque; Mensaje de regado; Mensaje de nivel de agua bajo;
+	                  Pantallas para configuracion de fecha y hora, umbral de humedad, y tiempo de riego.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "DisplayStates.h"
 #include <stdio.h>

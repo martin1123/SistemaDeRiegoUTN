@@ -1,9 +1,12 @@
-/*
- * comparadores.c
- *
- *  Created on: 10 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file comparadores.c
+	\brief Funciones verificadoras de humedad y nivel de agua estable
+	\details Funciones que verifican a través de lógica difusa si el humedad de las macetas
+	         es bajo o estable, asi como tambien el nivel de agua en el tanque.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
+
 #include "infotronic.h"
 
 /*acceptable_moisture() mediante logica difusa determina si la humedad

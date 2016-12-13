@@ -1,9 +1,17 @@
-/*
- * EventStates.c
- *
- *  Created on: 17 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file EventStates.c
+	\brief Maquina de estados de los eventos del sistema.
+	\details Basicamente esta maquina de estados permanece en reposo hasta que
+	         se activa un flag que indica que se debe regar, con lo cual se pasa al
+	         estado de riego. En el estado de riego se activa la bomba de agua, y se
+	         permanece en este estado hasta que se detecta que termino el tiempo de regado.
+	         A su vez, si se activa un flag que indica un nivel de agua bajo en tanque, se
+	         pasa al estado sinAgua, del cual no se podrá volver al estado de reposo hasta que
+	         no se llene el tanque de agua. Este ultimo estado provoca la activacion de una alarma
+	         que alerte al usuario del sistema.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "EventStates.h"
 
