@@ -1,3 +1,11 @@
+/**
+	\file Inicializacion.c
+	\brief inicializacion del sistema de riego
+	\details Funciones que incluyen todas las inicializaciones del sistema de riego antes de
+	         su funcionamiento.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 
 void inicializar(void)

@@ -1,9 +1,12 @@
-/*
- * receive.c
- *
- *  Created on: 1 de dic. de 2016
- *      Author: Martin
- */
+/**
+	\file receive.c
+	\brief Funciones utilizadas para la recepcion de datos
+	\details Las funciones de este fuente son utilizadas para la correcta recepcion de los
+			 datos enviados desde un dispositivo conectado por puerto serie y de la ejecucion
+			 de los comandos recibidos.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "receive.h"
 

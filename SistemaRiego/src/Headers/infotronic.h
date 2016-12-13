@@ -19,7 +19,7 @@
 #include "Commands.h"
 #include "transmision.h"
 #include "receive.h"
-#include "Receive_States.h"
+#include "Receive_states.h"
 //Humedad tierra
 extern volatile uint8_t humedad;
 

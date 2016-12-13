@@ -1,9 +1,19 @@
-/*
- * TransmitStates.c
- *
- *  Created on: 17 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file TransmitStates.c
+	\brief Maquina de estados de transmision por puerto serie.
+	\details Máquina de estados que comienza en el estado reposo. Si no se detecta algun dispositivo
+	         conectado al kit, se permancera indefinidamente en este estado.
+	         Cuando se detecta un dato a transmitir, se pasa al estado transmit_data, en el cual
+	         se realizara el armado de la trama a transmitir, y se transmitira la misma. Una vez hecha
+	         la transmision se pasará al estado confirmTransmission, en donde se va a esperar una confirmacion
+	         por parte del equipo conectado al kit. En caso de no recibirse la confirmacion en un lapso de tiempo
+	         determinado, se volverá a enviar el mensaje hasta 2 veces mas. Si no se llega a recibir un ACK, se
+	         vuelve al estado de reposo.
+	         Si se recibe el ACK por parte del equipo conectado al kit, se volvera al estado  de reposo a la espera
+	         de la transmision de datos.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "TransmitStates.h"
 #include "infotronic.h"
 

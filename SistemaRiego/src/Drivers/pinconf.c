@@ -5,7 +5,7 @@
  *      Author: Martin
  */
 #include "infotronic.h"
-#include "pinconf.h"
+#include "pinConf.h"
 
 void setPinSel(uint8_t port, uint8_t pin, uint8_t fun)
 {

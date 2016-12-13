@@ -1,9 +1,14 @@
-/*
- * ReceiveStates.c
- *
- *  Created on: 17 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file ReceiveStates.c
+	\brief Maquina de estados de recepcion por puerto serie.
+	\details Máquina de estados que comienza en el estado reposo. Cuando se detecta un dato en el
+	         buffer de entrada se verifica que sea un byte de start. En caso de no serlo se desecha el dato.
+	         El estado Receiving, se encarga de que se reciban los datos correctamente, contemplando
+	         cualquier error de comunicacion. Una vez recibidos los datos o detectado algun error se vuelve
+	         al estado de reposo.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "Receive_states.h"
 #include "receive.h"
 #include "infotronic.h"
