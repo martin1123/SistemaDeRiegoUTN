@@ -1,9 +1,10 @@
-/*
- * timers.h
- *
- *  Created on: 9 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file timers.h
+	\brief Registros y funciones manejadoras de los timers
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_TIMERS_H_
 #define HEADERS_TIMERS_H_

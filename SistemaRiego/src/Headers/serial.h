@@ -1,10 +1,10 @@
-/*
- * serial.h
- *
- *  Created on: 24 de oct. de 2016
- *      Author: mmaccio
- */
-
+/**
+	\file serial.h
+	\brief Header de funciones de puerto serie
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #ifndef HEADERS_SERIAL_H_
 #define HEADERS_SERIAL_H_
 

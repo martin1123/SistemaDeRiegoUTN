@@ -1,9 +1,10 @@
-/*
- * uart0.h
- *
- *  Created on: 30 de oct. de 2016
- *      Author: Martin
- */
+/**
+	\file uart0.h
+	\brief Registros UART0
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_UART0_H_
 #define HEADERS_UART0_H_

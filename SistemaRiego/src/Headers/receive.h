@@ -1,9 +1,10 @@
-/*
- * receive.h
- *
- *  Created on: 1 de dic. de 2016
- *      Author: Martin
- */
+/**
+	\file receive.h
+	\brief Header de funciones de recepcion de datos
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_RECEIVE_H_
 #define HEADERS_RECEIVE_H_

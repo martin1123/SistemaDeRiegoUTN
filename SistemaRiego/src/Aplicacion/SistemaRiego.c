@@ -12,7 +12,7 @@
 */
 
 #include "infotronic.h"
-
+#include "inicializar.h"
 /*Variables globales*/
 
 //Humedad tierra

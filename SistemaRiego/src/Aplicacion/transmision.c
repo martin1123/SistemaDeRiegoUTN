@@ -7,6 +7,7 @@
 #include "infotronic.h"
 #include "transmision.h"
 
+
 //Size de los byte de Start, tamaño, checksum, y stop
 #define SZ_CONTROL 4
 #define POS_INI_DATA 2

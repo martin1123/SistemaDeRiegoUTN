@@ -1,9 +1,10 @@
-/*
- * sensors.h
- *
- *  Created on: 18 de nov. de 2016
- *      Author: mmaccio
- */
+/**
+	\file sensors.h
+	\brief Registros de ADC y funciones declaracion de funciones de sensores
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_SENSORS_H_
 #define HEADERS_SENSORS_H_

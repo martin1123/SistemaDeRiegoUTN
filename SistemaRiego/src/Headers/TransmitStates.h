@@ -1,9 +1,10 @@
-/*
- * TransmitStates.h
- *
- *  Created on: 21 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file TransmitStates.h
+	\brief Header de la maquina de estados de transmision
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_TRANSMITSTATES_H_
 #define HEADERS_TRANSMITSTATES_H_

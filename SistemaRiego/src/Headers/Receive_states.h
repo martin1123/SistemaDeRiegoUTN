@@ -1,9 +1,10 @@
-/*
- * Receive.h
- *
- *  Created on: 21 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file Receive_states.h
+	\brief Header de maquina de recepcion de datos
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_RECEIVE_STATES_H_
 #define HEADERS_RECEIVE_STATES_H_

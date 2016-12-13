@@ -1,9 +1,10 @@
-/*
- * transmision.h
- *
- *  Created on: 28 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file transmision.h
+	\brief Declaracion de funciones para la transmision de datos
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_TRANSMISION_H_
 #define HEADERS_TRANSMISION_H_

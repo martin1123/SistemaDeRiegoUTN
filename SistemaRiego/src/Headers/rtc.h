@@ -1,9 +1,10 @@
-/*
- * rtc.h
- *
- *  Created on: 27 de oct. de 2016
- *      Author: Martin
- */
+/**
+	\file rtc.h
+	\brief Declaracion dec funciones y registros del RTC
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_RTC_H_
 #define HEADERS_RTC_H_

@@ -1,9 +1,10 @@
-/*
- * uart1.h
- *
- *  Created on: 24 de oct. de 2016
- *      Author: mmaccio
- */
+/**
+	\file uart1.h
+	\brief Registros UART1
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_UART1_H_
 #define HEADERS_UART1_H_

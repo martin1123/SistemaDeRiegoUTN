@@ -7,6 +7,7 @@
 	\version 1.0.0
 */
 #include "infotronic.h"
+#include "inicializar.h"
 
 void inicializar(void)
 {
