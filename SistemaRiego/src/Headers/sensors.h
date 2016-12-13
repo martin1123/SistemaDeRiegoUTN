@@ -38,6 +38,7 @@
 #define PORT_HUM  0
 #define PIN_HUM   0
 
+void InitSensores();
 short getTemp(short t);
 uint8_t getHumedad(uint8_t h);
 uint8_t getlvlH2O(uint8_t lvl);

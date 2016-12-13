@@ -98,6 +98,7 @@
 
 /*Declaraciones de funciones*/
 void TimerEvent(void);
+void initTimers();
 void TimerStop(uint8_t ev);
 void TimerStart(uint8_t ev, uint8_t time);
 void TimerClose(void);

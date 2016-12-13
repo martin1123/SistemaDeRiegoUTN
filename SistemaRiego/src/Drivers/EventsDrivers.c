@@ -1,9 +1,10 @@
-/*
- * EventsDrivers.c
- *
- *  Created on: 20 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file EventsDrivers.c
+	\brief Drivers que controlan la bomba de riego
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "EventStates.h"
 #include "infotronic.h"
 

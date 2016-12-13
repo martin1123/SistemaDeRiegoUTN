@@ -1,9 +1,10 @@
-/*
- * pinconf.c
- *
- *  Created on: 8 de dic. de 2016
- *      Author: Martin
- */
+/**
+	\file pinconf.c
+	\brief Drivers para la configuracion de los pines
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "pinConf.h"
 

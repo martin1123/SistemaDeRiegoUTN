@@ -63,6 +63,14 @@ void TimerEvent(void)
 
 }
 
+void initTimers()
+{
+	/* Inicializacion de timer de refresco de display
+	 * En principio, este es el unico timer que se va a utilizar*/
+	/*Refresco de pantalla cada 5 segundos*/
+	TimerStart(TIMER_EV_DISPLAY, 50);
+}
+
 void TimerStop(uint8_t ev)
 {
 	SYSTICK_PUNT->STCTRL &= ~(0x01 << 1); //TINCKINT OFF

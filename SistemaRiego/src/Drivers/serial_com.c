@@ -1,4 +1,10 @@
-
+/**
+	\file serial_com.c
+	\brief Driver de comunicacion por puerto serie
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 
 

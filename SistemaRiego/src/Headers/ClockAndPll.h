@@ -1,4 +1,7 @@
 
+#ifndef __CLOCKANDPLL__
+#define __CLOCKANDPLL__
+
 //Registros del CLOCK y de sistema:
 //0x400FC1A0UL: Registro de control de sistema y registro de status:
 #define	DIR_SCS	( (uint32_t *) 0x400FC1A0UL)
@@ -69,3 +72,7 @@
 #define PCONP_Value             0x042887DE
 #define CLKOUTCFG_Value         0x00000000
 #define FLASHCFG_Value			0x00004000
+
+void InitPLL ( );
+
+#endif

@@ -1,9 +1,11 @@
-/*
- * lcd_drivers.c
- *
- *  Created on: 18 de nov. de 2016
- *      Author: mmaccio
- */
+/**
+	\file lcd_drivers.c
+	\brief Drivers de LCD 16X2
+	\details Estos drivers se encargan de mostrar la informacion adecuadamente
+	         en el LCD 16X2
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #include "infotronic.h"
 #include "lcd.h"

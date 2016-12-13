@@ -20,4 +20,6 @@ typedef struct{
 /*Puntero a registro SYSTICK*/
 #define SYSTICK_PUNT ((SYSTICK_T *) 0xE000E010)
 
+void init_systick();
+
 #endif /* HEADERS_SYSTICK_H_ */

@@ -10,7 +10,6 @@
 #include "uart1.h"
 #include "serial.h"
 #include "rtc.h"
-#include "SysIni.h"
 #include "timers.h"
 #include "sensors.h"
 #include "DisplayStates.h"
@@ -20,6 +19,8 @@
 #include "transmision.h"
 #include "receive.h"
 #include "Receive_states.h"
+#include "waterPump.h"
+
 //Humedad tierra
 extern volatile uint8_t humedad;
 
