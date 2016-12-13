@@ -68,14 +68,15 @@ volatile flagST_t EXPIRED_ACK = OFF;
  * 6) Timer de regado
  * 7) Timer de alarma cuando lvl h2o es bajo
  */
-volatile uint8_t timer_events;
-volatile uint8_t timer_vector[TIMERS_CANT];
+
+volatile uint8_t timer_events;//Variable que cada bit simboliza cuando vence un timer.
+volatile uint8_t timer_vector[TIMERS_CANT];//Vector de timers. Cada posicion simboliza un timer.
 
 void ActualizarDatos ( void );
 
 int main (void)
 {
-	inicializar();
+	inicializar();//Inicializacion del sistema
 
 	while(1)
 	{

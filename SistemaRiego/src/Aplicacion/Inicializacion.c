@@ -17,5 +17,5 @@ void inicializar(void)
 	InitSensores(); //Inicializacion de Puertos y pines de todos los sensores del sistema
 	InitBomba(); //Inicializacion de Puertos y pines de la bomba
 //	InitUART0(); //Inicializacion para comunicacion UART0
-	initTimers();
+	initTimers();//Inicializacion de la maquina de timers
 }

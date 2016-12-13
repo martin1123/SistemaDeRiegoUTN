@@ -14,7 +14,7 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 {
 	uint8_t sz_sub;
 
-	for(*cpos = 0; *cpos < SIZE_COMMANDS; *cpos++)
+	for(*cpos = 0; *cpos < SIZE_COMMANDS; (*cpos)++)
 	{
 		//Si encontro comando
 		if(commands[*cpos].command == trama[0])
@@ -44,7 +44,7 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 			break; //Este caso es imposible que pase
 	}
 
-	for(*scpos = 0; *scpos < sz_sub; *scpos++)
+	for(*scpos = 0; *scpos < sz_sub; (*scpos)++)
 	{
 		//Si encontro comando
 		if(commands[*cpos].sub[*scpos].subCommand == trama[1])
