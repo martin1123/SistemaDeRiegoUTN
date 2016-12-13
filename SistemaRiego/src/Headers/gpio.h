@@ -1,7 +1,12 @@
 /**
- *En este Header se encuentran todas las macros necesarias para la configuracion, lectura 
- *y escritura de los pines GPIO
- */
+	\file gpio.h
+	\brief Header de funciones GPIO
+	\details Este Header contiene declara el tipo de estructura
+	         GPIO para facilitar el uso de macros.
+	         Provee macros de configuracion y manejo de los pines GPIO.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef __GPIO__
 #define __GPIO__

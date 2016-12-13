@@ -1,10 +1,10 @@
-/*
- * lcd.c
-
- *
- *  Created on: 18 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file EventsDrivers.c
+	\brief Primitivas LCD 16X2
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "lcd.h"
 

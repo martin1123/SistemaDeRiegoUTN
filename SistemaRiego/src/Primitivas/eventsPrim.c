@@ -1,9 +1,10 @@
-/*
- * eventsPrim.c
- *
- *  Created on: 20 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file eventsPrim.c
+	\brief Primitivas de activacion y desactivacion de regado y alarmas
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #include "EventStates.h"
 #include "infotronic.h"

@@ -1,9 +1,10 @@
-/*
- * DisplayStates.h
- *
- *  Created on: 18 de nov. de 2016
- *      Author: mmaccio
- */
+/**
+	\file DisplayStates.h
+	\brief Header del Display LCD
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_DISPLAYSTATES_H_
 #define HEADERS_DISPLAYSTATES_H_

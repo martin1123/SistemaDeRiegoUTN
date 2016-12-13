@@ -1,9 +1,10 @@
-/*
- * UART1.c
- *
- *  Created on: 21 de oct. de 2016
- *      Author: Martin
- */
+/**
+	\file SerialPort.c
+	\brief Primitivas del manejo de los buffers de transmision y recepcion
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 
 

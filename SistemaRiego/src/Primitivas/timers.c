@@ -1,7 +1,7 @@
 /**
 	\file timers.c
-	\brief Maquina de timers.
-	\details Completar
+	\brief Primitivas del manejo de la maquina de timers
+	\details
 	\author Grupo II, curso R2053
 	\version 1.0.0
 */

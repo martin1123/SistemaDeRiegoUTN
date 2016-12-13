@@ -1,9 +1,10 @@
-/*
- * Commands.h
- *
- *  Created on: 22 de nov. de 2016
- *      Author: mmaccio
- */
+/**
+	\file Commands.h
+	\brief Header de los comandos de comunicacion
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_COMMANDS_H_
 #define HEADERS_COMMANDS_H_

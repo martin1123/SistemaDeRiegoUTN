@@ -1,9 +1,10 @@
-/*
- * EventStates.h
- *
- *  Created on: 18 de nov. de 2016
- *      Author: mmaccio
- */
+/**
+	\file EventStates.h
+	\brief Header de la maquina de estado de eventos
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_EVENTSTATES_H_
 #define HEADERS_EVENTSTATES_H_

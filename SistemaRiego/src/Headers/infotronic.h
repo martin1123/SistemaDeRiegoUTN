@@ -1,3 +1,12 @@
+/**
+	\file infotronic.h
+	\brief Header general
+	\details Este header provee el acceso a las funciones, registros,
+	         y  variables globales del sistema de riego.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
+
 #ifndef __INFOTRONIC__
 #define __INFOTRONIC__
 

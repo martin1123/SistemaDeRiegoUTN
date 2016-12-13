@@ -1,9 +1,10 @@
-/*
- * waterPump.c
- *
- *  Created on: 13 de dic. de 2016
- *      Author: mmaccio
- */
+/**
+	\file systick.c
+	\brief Driver de la bonba de agua
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #include "infotronic.h"
 

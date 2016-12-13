@@ -1,9 +1,10 @@
-/*
- * sensors.c
- *
- *  Created on: 18 de nov. de 2016
- *      Author: mmaccio
- */
+/**
+	\file sensors.c
+	\brief Primitivas de los sensores de humedad, temperatura, y nivel.
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "sensors.h"
 #include <math.h>
