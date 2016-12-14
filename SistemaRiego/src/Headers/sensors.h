@@ -17,14 +17,20 @@
 #define		DIR_AD0GDR	( ( uint32_t  * ) 0x40034004UL )
 //0x4003400CUL: Registro de interrupcion del ADC
 #define		DIR_AD0INTEN ( ( uint32_t  * ) 0x4003400CUL )
+
+#define		AD0CR		DIR_AD0CR[0]
+#define		AD0GDR		DIR_AD0GDR[0]
+#define		AD0INTEN	DIR_AD0INTEN[0]
+
 //0x40034010UL: Registros de estado de los ADCx
 #define		AD0DR		( ( uint32_t  * ) 0x40034010UL )
 
+#define     AD0DR0      AD0DR[0]
 #define		AD0DR1		AD0DR[1]
 #define		AD0DR2		AD0DR[2]
 #define		AD0DR3		AD0DR[3]
 
-#define	ADC_VAL(reg)	((reg>>04)&0x00000FFF)
+#define	ADC_VAL(reg)	((reg>>04)&0x0000FFFF)
 #define	ADC_DONE(reg)	((reg>>31)&0x00000001)
 
 #define	ADC1_VAL		ADC_VAL(AD0DR1)
@@ -33,9 +39,9 @@
 
 //Puertos y pines de los sensores
 #define PORT_NTC  0
-#define PIN_NTC   0
+#define PIN_NTC   24
 #define PORT_H2O  0
-#define PIN_H2O   0
+#define PIN_H2O   23
 #define PORT_HUM  0
 #define PIN_HUM   0
 

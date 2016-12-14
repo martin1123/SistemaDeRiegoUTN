@@ -29,7 +29,7 @@ void Display_machine(void)
 
 void showHyT(void)
 {
-	sprintf(msg_renglon, "Temp: %3d°C", temp);
+	sprintf(msg_renglon, "Temp: %3d", temp);
 	Display_lcd( msg_renglon , 0 , 0 );
 	sprintf(msg_renglon, "Humedad: %3d\%", humedad);
 	Display_lcd( msg_renglon , 1 , 0 );
@@ -105,7 +105,7 @@ void showH2O(void)
 
 void showDateAndHour(void)
 {
-	sprintf(msg_renglon, "Fecha: %02d/%02d/%4d", RTCDOM, RTCMONTH, RTCYEAR);
+	sprintf(msg_renglon, "Fecha:%02d/%02d/%4d", RTCDOM, RTCMONTH, RTCYEAR);
 	Display_lcd( msg_renglon , 0 , 0 );
 	sprintf(msg_renglon, "Hora: %02d:%02d:%02d", RTCHOUR, RTCMIN, RTCSEC);
 	Display_lcd( msg_renglon , 1 , 0 );
