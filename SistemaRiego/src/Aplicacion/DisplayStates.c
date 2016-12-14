@@ -109,6 +109,7 @@ void showDateAndHour(void)
 	Display_lcd( msg_renglon , 0 , 0 );
 	sprintf(msg_renglon, "Hora: %02d:%02d:%02d", RTCHOUR, RTCMIN, RTCSEC);
 	Display_lcd( msg_renglon , 1 , 0 );
+	f_states = Disp_Date_Hour;
 
 	if(flag_H2OBajo)
 	{
