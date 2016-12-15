@@ -33,7 +33,7 @@ uint8_t getHumedad(uint8_t h)
 
 uint8_t getlvlH2O(uint8_t lvl)
 {
-	uint16_t result;
+	int result;
 	if((result = sensorlvlH2O()))
 	{
 		return convertToLvlH2O(result);

@@ -70,7 +70,11 @@ extern volatile uint8_t timer_vector[];
 #define		PCLKSEL0	PCLKSEL[0]
 #define		PCLKSEL1	PCLKSEL[1]
 
-#define     ISER0                   (*( ( registro_t  * )  0xE000E100UL ))
+#define     ISER                   ( ( registro_t  * )  0xE000E100UL )
+#define     ISER0     ISER[0]
+
+#define     ICPR                   ( ( registro_t  * )  0xE000E280UL )
+#define     ICPR0     ICPR[0]
 
 #define SALIDA 1
 #define ENTRADA 0

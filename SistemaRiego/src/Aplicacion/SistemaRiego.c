@@ -80,7 +80,7 @@ int main (void)
 
 	while(1)
 	{
-		ActualizarDatos();//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.*/
+		//ActualizarDatos();//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.*/
 		TimerEvent();//Funcion que analiza timers vencidos
 		//Receive_Machine();//Maquina que maneja la recepción de datos por UART
 		//Transmit_Machine();//Maquina que se encarga de la transmisión de datos por UART

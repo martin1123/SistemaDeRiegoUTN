@@ -21,7 +21,7 @@ void InitSensores()
 	AD0CR &= 0x00000100;
 	//4.- Configuro los pines del ADC0
 	//ADC0.1: Inicializo NTC
-	setPinSel(PORT_H2O,PIN_H2O,1);
+	setPinSel(PORT_H2O,PIN_H2O,3);
 	set_dir(PORT_H2O,PIN_H2O,0);
 	//5.- NO ACTIVO LAS INTERRUPCIONES:
 	AD0INTEN &= 0xFFFFFE00;
@@ -58,10 +58,13 @@ uint16_t sensorHum()
 	return NO_VALUE;
 }
 
-uint16_t sensorlvlH2O()
+int sensorlvlH2O()
 {
-	if ( ADC_DONE (AD0DR0) ) //Verifico nivel H2O
-	    return ADC3_VAL;
-
-	return NO_VALUE;
+	static int resultado = 0;
+	int registro = AD0DR5;
+	if ( ADC_DONE (AD0DR5) ){ //Verifico nivel H2O
+		resultado = ( registro >> 4 ) & 0x0000FFFF;
+	    return resultado;
+	}
+	return resultado;
 }
