@@ -37,4 +37,6 @@
 
 #define			UART0					( ( registro_t  * ) 0x40010000UL )
 
+void InitUART0(void);
+
 #endif /* HEADERS_UART0_H_ */

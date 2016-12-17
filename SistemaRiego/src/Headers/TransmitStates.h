@@ -19,7 +19,7 @@ void no_transmit(void);
 void transmit_data(void);
 void transmitAck(void);
 void confirmTransmission(void);
-
+void restartTimer(void);
 
 
 #endif /* HEADERS_TRANSMITSTATES_H_ */

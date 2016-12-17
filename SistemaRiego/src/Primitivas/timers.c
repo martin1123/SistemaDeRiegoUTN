@@ -67,8 +67,11 @@ void initTimers()
 {
 	/* Inicializacion de timer de refresco de display
 	 * En principio, este es el unico timer que se va a utilizar*/
-	/*Refresco de pantalla cada 5 segundos*/
-	TimerStart(TIMER_EV_DISPLAY, 50);
+
+	TimerStart(TIMER_EV_DISPLAY, 50); /*Refresco de pantalla cada 5 segundos*/
+	//TimerStart(TIMER_EV_UART_TEMP, 5);/*Enviar informacion de la temperatura cada 500ms*/
+	//TimerStart(TIMER_EV_UART_HUM, 4);/*Enviar informacion de la humedad cada 400ms*/
+	//TimerStart(TIMER_EV_UART_H2O, 3);/*Enviar informacion del nivel de agua cada 300ms*/
 }
 
 void TimerStop(uint8_t ev)

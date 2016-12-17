@@ -29,6 +29,7 @@
 #include "receive.h"
 #include "Receive_states.h"
 #include "waterPump.h"
+#include "uart0.h"
 
 //Humedad tierra
 extern volatile uint8_t humedad;

@@ -17,6 +17,6 @@ void inicializar(void)
 	InitLCD (); //Iniciacion LCD 16X2
 	//InitSensores(); //Inicializacion de Puertos y pines de todos los sensores del sistema
 	InitBomba(); //Inicializacion de Puertos y pines de la bomba
-//	InitUART0(); //Inicializacion para comunicacion UART0
+	//InitUART0(); //Inicializacion para comunicacion UART0
 	initTimers();//Inicializacion de la maquina de timers
 }

@@ -37,4 +37,7 @@
 
 #define			UART1					( ( registro_t  * ) 0x40010000UL )
 
+#define IER_RBR 0x01
+#define IER_THRE 0x02
+
 #endif /* HEADERS_UART1_H_ */
