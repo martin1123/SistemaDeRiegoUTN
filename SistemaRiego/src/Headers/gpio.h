@@ -25,7 +25,7 @@ typedef struct{
 
 #define set_dir(port,pin,dir) ((dir)?((GPIO_BASE + port)->fiodir |= (1 << pin)):((GPIO_BASE + port)->fiodir &= ~(1 << pin)))
 
-#define write_pin(port,pin,val) ((val)?((GPIO_BASE + port)->fioset |= (1 << pin)):((GPIO_BASE + port)->fioclr |= (1 << pin)))
+#define write_pin(port,pin,val) ((val)?((GPIO_BASE + port)->fiopin |= (1 << pin)):((GPIO_BASE + port)->fiopin &= ~(1 << pin)))
 
 #define read_pin(port,pin) ((((GPIO_BASE + port)->fiopin) >> pin) & 0x01)
 

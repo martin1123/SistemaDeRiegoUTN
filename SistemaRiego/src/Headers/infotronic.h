@@ -30,6 +30,7 @@
 #include "Receive_states.h"
 #include "waterPump.h"
 #include "uart0.h"
+#include "Alarm.h"
 
 //Humedad tierra
 extern volatile uint8_t humedad;
@@ -62,6 +63,7 @@ extern volatile flagST_t EXPIRED_ACK;
 extern volatile flagST_t RECEIVED_ACK;
 extern volatile uint8_t timer_events;
 extern volatile uint8_t timer_vector[];
+extern volatile flagST_t flag_alarm;
 
 
 #define 	PCONP	(* ( ( registro_t  * ) 0x400FC0C4UL ))
@@ -79,6 +81,5 @@ extern volatile uint8_t timer_vector[];
 
 #define SALIDA 1
 #define ENTRADA 0
-
 
 #endif

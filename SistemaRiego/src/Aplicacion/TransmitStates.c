@@ -69,7 +69,7 @@ void transmit_data(void)
 	{
 		transmitir(trama, sz_trama);
 		t_state = STATE_TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
-		TimerStart(TIMER_EV_UART_ACK,5);//Iniciar timer de espera para recibir ack, sino retransmite
+		TimerStart(TIMER_EV_H2O_ALARM,5);//Iniciar timer de espera para recibir ack, sino retransmite
 	}
 	else
 		t_state = STATE_NO_TRANS;

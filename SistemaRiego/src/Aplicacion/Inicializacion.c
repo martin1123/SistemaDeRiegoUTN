@@ -9,6 +9,9 @@
 #include "infotronic.h"
 #include "inicializar.h"
 
+void initLedRGB(void);
+void initAlarm(void);
+
 void inicializar(void)
 {
 	InitPLL () ;
@@ -19,4 +22,22 @@ void inicializar(void)
 	InitBomba(); //Inicializacion de Puertos y pines de la bomba
 	//InitUART0(); //Inicializacion para comunicacion UART0
 	initTimers();//Inicializacion de la maquina de timers
+	initAlarm();
+	initLedRGB();
+}
+
+void initLedRGB()
+{
+	//Se apaga led RGB
+	conf_gpio(2,1,OUT);
+	conf_gpio(2,2,OUT);
+	conf_gpio(2,3,OUT);
+	write_pin(2,1,0);
+	write_pin(2,2,0);
+	write_pin(2,3,0);
+}
+
+void initAlarm(void)
+{
+	conf_gpio(BUZZ_PORT,BUZZ_PIN,OUT); //BUZZ_PORT 0, BUZZ_PIN 28
 }

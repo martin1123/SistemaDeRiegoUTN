@@ -55,6 +55,7 @@ volatile flagST_t TRANSMIT_H2O = OFF;
 volatile flagST_t TRANSMIT_ACK = OFF;
 volatile flagST_t RECEIVED_ACK = OFF; //Flag que indica si se recibio un ACK
 volatile flagST_t EXPIRED_ACK = OFF;
+volatile flagST_t flag_alarm = OFF;
 
 /*========================================*/
 /*                 TIMERS                 */
@@ -80,13 +81,15 @@ int main (void)
 
 	while(1)
 	{
-		//ActualizarDatos();//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.*/
+		ActualizarDatos();//Se actualizan los datos de Humedad, Temperatura, y nivel de agua.*/
 		TimerEvent();//Funcion que analiza timers vencidos
 		//Receive_Machine();//Maquina que maneja la recepción de datos por UART
-		Transmit_Machine();//Maquina que se encarga de la transmisión de datos por UART
-		//Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
+		//Transmit_Machine();//Maquina que se encarga de la transmisión de datos por UART
+		Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
 		Display_machine();//Maquina que maneja el muestreo de información en el display 16X2
 		//Date_config_Machine();//Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario
+		Alarm_Machine();
+
 	}
 
 	return 0;
@@ -97,7 +100,7 @@ void ActualizarDatos ( void )
 {
 	//temp = getTemp(temp);
 	//humedad = getHumedad(humedad);
-	lvlH2O = getlvlH2O(lvlH2O);
+	//lvlH2O = getlvlH2O(lvlH2O);
 
 	if(!acceptable_moisture(humedad))
 		flag_regar = ON;

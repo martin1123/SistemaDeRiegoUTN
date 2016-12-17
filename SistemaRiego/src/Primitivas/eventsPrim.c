@@ -26,11 +26,11 @@ void desactivarRiego(void)
 
 void activarAlarmaH2O(void)
 {
-	return;
+	flag_alarm = ON;
 }
 
 void desactivarAlarmaH2O(void)
 {
-	return;
+	flag_alarm = OFF;
 }
 
