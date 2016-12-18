@@ -29,7 +29,6 @@ void Display_machine(void)
 
 void showHyT(void)
 {
-	write_pin(0,28,0);
 	sprintf(msg_renglon, "Temp: %3d", temp);
 	Display_lcd( msg_renglon , 0 , 0 );
 	sprintf(msg_renglon, "Humedad: %3d\%", humedad);
@@ -69,7 +68,6 @@ void showHyT(void)
 
 void showH2O(void)
 {
-	write_pin(0,28,1);
 	sprintf(msg_renglon, "Nivel H2O: %3d\%", lvlH2O);
 	Display_lcd( msg_renglon , 0 , 0 );
 	Display_lcd( " " , 1 , 0 );
