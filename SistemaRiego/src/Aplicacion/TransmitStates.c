@@ -69,7 +69,7 @@ void transmit_data(void)
 	{
 		transmitir(trama, sz_trama);
 		t_state = STATE_TRANS_CONFIRM; //Se pasa al estado de espera de un ACK de parte del dispositivo conectado por UART
-		TimerStart(TIMER_EV_H2O_ALARM,5);//Iniciar timer de espera para recibir ack, sino retransmite
+		TimerStart(TIMER_EV_UART_ACK,1);//Iniciar timer de espera para recibir ack, sino retransmite
 	}
 	else
 		t_state = STATE_NO_TRANS;
@@ -129,10 +129,10 @@ void restartTimer(void)
 	switch(dataToTrans)
 	{
 		case TRANS_TEMP:
-			TimerStart(TIMER_EV_UART_TEMP, 5);
+			TimerStart(TIMER_EV_UART_TEMP, 11);
 			break;
 		case TRANS_HUM:
-			TimerStart(TIMER_EV_UART_HUM, 4);
+			TimerStart(TIMER_EV_UART_HUM, 7);
 			break;
 		case TRANS_LVLH2O:
 			TimerStart(TIMER_EV_UART_H2O, 3);

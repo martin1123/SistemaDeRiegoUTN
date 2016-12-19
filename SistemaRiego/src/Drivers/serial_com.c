@@ -28,7 +28,8 @@ void InitUART0(void)
 
 void UART1_IRQHandler (void)
 {
- uint8_t aux, dato_tx, dato;
+ uint8_t aux , dato;
+ int dato_tx;
 
     do
       {
@@ -40,7 +41,7 @@ void UART1_IRQHandler (void)
             	 //Transmisión
             	 dato_tx = PopTx ();
 
-            	 if (dato_tx > 0)
+            	 if (dato_tx >= 0)
                 	 U1THR = dato_tx;
                  else
                      TxStart = 0; // aviso que puedo volver a transmitir

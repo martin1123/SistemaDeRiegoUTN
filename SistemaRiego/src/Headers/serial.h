@@ -10,8 +10,8 @@
 
 int PopRx (void);
 int PopTx (void);
-void PushTx (unsigned char dato);
-void PushRx (unsigned char dato);
+int PushTx (unsigned char dato);
+int PushRx (unsigned char dato);
 
 
 //Tamaño de buffer de las colas de transmision y recepcion

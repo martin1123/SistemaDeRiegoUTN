@@ -64,6 +64,10 @@ extern volatile flagST_t RECEIVED_ACK;
 extern volatile uint8_t timer_events;
 extern volatile uint8_t timer_vector[];
 extern volatile flagST_t flag_alarm;
+extern volatile uint8_t bufferTxEmpty;
+extern volatile uint8_t bufferRxEmpty;
+extern volatile uint8_t bufferTxFull;
+extern volatile uint8_t bufferRxFull;
 
 
 #define 	PCONP	(* ( ( registro_t  * ) 0x400FC0C4UL ))

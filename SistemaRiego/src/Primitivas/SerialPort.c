@@ -10,48 +10,73 @@
 
 int PopRx (void)
 {
+    int aux;
 
-    int aux = -1;
+    if(bufferRxEmpty)
+    	return -1;
 
-    if (inxRxIn != inxRxOut)
-      {
-        aux = BufferRx[inxRxOut];
-        inxRxOut ++;
-        inxRxOut %= BUFF_SIZE;
-      }
- return aux;
+    aux = BufferRx[inxRxOut++];
+    inxRxOut %= BUFF_SIZE;
+    bufferRxFull = OFF;
+
+    if (inxRxIn == inxRxOut)
+    	bufferRxEmpty = ON;
+
+    return aux;
 }
 
-void PushTx (unsigned char dato)
+int PushTx (unsigned char dato)
 {
-    BufferTx[inxTxIn] = dato;
-    inxTxIn ++;
+	if(bufferTxFull)
+		return -1;
+
+    BufferTx[inxTxIn++] = dato;
     inxTxIn %= BUFF_SIZE;
+    bufferTxEmpty = OFF;
+
+    if (inxTxIn == inxTxOut)
+    	bufferTxFull = ON;
 
     if (TxStart == 0)
-       {
+    {
         TxStart = 1;
-        U1THR= BufferTx[inxTxOut];
-       }
+        bufferTxEmpty = ON;
+        U1THR= PopTx();
+    }
+
+    return 1;
 }
 
-void PushRx (unsigned char dato)
+int PushRx (unsigned char dato)
 {
-  BufferRx[inxRxIn] = dato;           //recibo
-  inxRxIn++;
-  inxRxIn %= BUFF_SIZE;
+	  if(bufferRxFull)
+		  return -1;
+
+	  BufferRx[inxRxIn++] = dato;
+	  inxRxIn %= BUFF_SIZE;
+	  bufferRxEmpty = OFF;
+
+	  if(inxRxIn == inxRxOut)
+		  bufferRxFull = ON;
+
+	  return 1;
 }
 
 int PopTx (void)
 {
-  int aux = 0;
+	  int aux = -1;
 
-  if (inxTxIn != inxTxOut)
-    {
-      aux = BufferTx[inxTxOut];
-      inxTxOut ++;
-      inxTxOut %= BUFF_SIZE;
-    }
+	  if(bufferTxEmpty)
+		  return -1;
 
-  return aux;
+	  aux = BufferTx[inxTxOut++];
+	  inxTxOut %= BUFF_SIZE;
+	  bufferTxFull = OFF;
+
+	  if (inxTxIn == inxTxOut)
+	  {
+		  bufferTxEmpty = ON;
+	  }
+
+	  return aux;
 }
