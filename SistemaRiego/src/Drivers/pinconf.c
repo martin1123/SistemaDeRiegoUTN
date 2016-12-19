@@ -24,7 +24,7 @@ void setPinSel(uint8_t port, uint8_t pin, uint8_t fun)
 		*pinsel &= ~(0x03<<pin*2);
 
 		//Asigno fun a los bits correspondientes al pin
-		*pinsel |= ~(fun<<pin*2);
+		*pinsel |= (fun<<pin*2);
 	}
 }
 
