@@ -32,39 +32,17 @@ void InitSensores()
 	//8.- Selecciono que el ADC muestree solo, con BURST = 1 y START = 000:
 	AD0CR &= ~(0x0F<<24);
 	AD0CR |= 1<<16;
-	/*
-	conf_gpio(PORT_NTC,PIN_NTC,IN);
-	conf_gpio(PORT_H2O,PIN_H2O,IN);
-	conf_gpio(PORT_HUM,PIN_HUM,IN);
-	setPinMode(PORT_NTC,PIN_NTC,PULL_UP);
-	setPinMode(PORT_H2O,PIN_H2O,PULL_UP);
-	setPinMode(PORT_HUM,PIN_HUM,PULL_UP);
-	*/
+
+
 }
 
-uint16_t sensorTemp()
-{
-	if ( ADC_DONE (AD0DR1) ) //Verifico temp
-	    return ADC1_VAL;
-
-	return NO_VALUE;
-}
-
-uint16_t sensorHum()
-{
-	if ( ADC_DONE (AD0DR2) ) //Verifico Humedad
-	    return ADC2_VAL;
-
-	return NO_VALUE;
-}
-
-int sensorlvlH2O()
+int getSensorValue(int registro)
 {
 	static int resultado = 0;
-	int registro = AD0DR5;
-	if ( ADC_DONE (AD0DR5) ){ //Verifico nivel H2O
+
+	if ( ADC_DONE (registro) ){ //Verifico nivel H2O
 		resultado = ( registro >> 4 ) & 0x0000FFFF;
-	    return resultado;
 	}
+
 	return resultado;
 }

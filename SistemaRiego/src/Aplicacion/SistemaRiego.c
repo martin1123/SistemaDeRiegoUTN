@@ -106,7 +106,7 @@ void ActualizarDatos ( void )
 {
 	//temp = getTemp(temp);
 	//humedad = getHumedad(humedad);
-	//lvlH2O = getlvlH2O(lvlH2O);
+	lvlH2O = getlvlH2O(lvlH2O);
 
 	if(!acceptable_moisture(humedad))
 		flag_regar = ON;

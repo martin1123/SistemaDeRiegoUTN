@@ -12,7 +12,7 @@
 short getTemp(short t)
 {
 	uint16_t result;
-	if((result = sensorTemp()))
+	if((result = sensorTemp(AD0DR1)))
 	{
 		return convertToTemp(result);
 	}
@@ -23,7 +23,7 @@ short getTemp(short t)
 uint8_t getHumedad(uint8_t h)
 {
 	uint16_t result;
-	if((result = sensorHum()))
+	if((result = getSensorValue(AD0DR2)))
 	{
 		return convertToHum(result);
 	}
@@ -34,7 +34,7 @@ uint8_t getHumedad(uint8_t h)
 uint8_t getlvlH2O(uint8_t lvl)
 {
 	int result;
-	if((result = sensorlvlH2O()))
+	if((result = getSensorValue(AD0DR5)))
 	{
 		return convertToLvlH2O(result);
 	}
