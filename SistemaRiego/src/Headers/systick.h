@@ -1,11 +1,10 @@
-/*
- * systick.h
- *
- *  Created on: 13 de oct. de 2016
- *      Author: Martin
- *
- *  Registro y declaracion de funciones del systick
- */
+/**
+	\file systick.h
+	\brief Declaracion de estructura de datos SYSTICK y registros
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 
 #ifndef HEADERS_SYSTICK_H_
 #define HEADERS_SYSTICK_H_

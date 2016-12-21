@@ -1,12 +1,13 @@
-/*
- * System_INIC.c
- *
- *  Created on: 13 de oct. de 2016
- *      Author: Martin
- *
- * Drivers de inicialización del sistema
- */
+/**
+	\file systick.c
+	\brief Driver del systick
+	\details
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
+
+#define DECIMAS 40
 
 void init_systick()
 {
@@ -16,4 +17,17 @@ void init_systick()
 	// Habilito interrupcion
 	// Utilizamos Pclk
 	SYSTICK_PUNT->STCTRL |=  ( ( 1 << 0x00 ) | ( 1 << 0x01 ) | ( 1 << 0x02 ) );
+}
+
+void SysTick_Handler(void)
+{
+	static uint8_t decimas = DECIMAS;
+
+	decimas--;
+
+	if(!decimas)
+	{
+		decimas = DECIMAS;
+		AnalizarTimer();
+	}
 }
