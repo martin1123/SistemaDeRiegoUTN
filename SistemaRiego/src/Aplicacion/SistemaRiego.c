@@ -105,7 +105,7 @@ int main (void)
 void ActualizarDatos ( void )
 {
 	temp = (uint16_t)getTemp(temp);
-	//humedad = getHumedad(humedad);
+	humedad = getHumedad(humedad);
 	lvlH2O = getlvlH2O(lvlH2O);
 
 	if(!acceptable_moisture(humedad))

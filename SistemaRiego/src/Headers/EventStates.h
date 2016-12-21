@@ -8,12 +8,13 @@
 
 #ifndef HEADERS_EVENTSTATES_H_
 #define HEADERS_EVENTSTATES_H_
+#include "types.h"
 
 void Event_Machine(void);
 void no_event(void);
 void regando(void);
 void sinAgua(void);
-void activarRiego(void);
+void activarRiego(uint8_t t);
 void desactivarRiego(void);
 void activarAlarmaH2O(void);
 void desactivarAlarmaH2O(void);

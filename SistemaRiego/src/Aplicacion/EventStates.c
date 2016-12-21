@@ -40,11 +40,14 @@ void no_event(void)
 
 void regando(void)
 {
-	activarRiego();
+	static uint8_t timer_on = 0;
+	activarRiego(timer_on);
+	timer_on = 1;
 
 	/*Si vencio timer de riego*/
 	if(timer_Riego == ON)
 	{
+		timer_on = 0;
 		desactivarRiego();
 		eSate = NO_EVENT;
 	}

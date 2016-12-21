@@ -17,7 +17,7 @@
 	 * sino hasta esperar un tiempo razonable en el que el agua se distribuya en la tierra.*/
 uint8_t acceptable_moisture(uint8_t h)
 {
-	return 1;
+	return h > 49;
 }
 
 /*acceptable_level() mediante logica difusa determina si el nivel de agua

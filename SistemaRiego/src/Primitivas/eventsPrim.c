@@ -9,17 +9,20 @@
 #include "EventStates.h"
 #include "infotronic.h"
 
-void activarRiego(void)
+void activarRiego(uint8_t timer_status)
 {
 	encenderRegado();
-	/*Encender timer 6*/
+
+	if(!timer_status)
+		TimerStart(TIMER_EV_RIEGO, 40);
+
 	return;
 }
 
 void desactivarRiego(void)
 {
 	apagarRegado();
-	/*Detener timer 6, reiniciarlo y setear timer_Riego en OFF;*/
+	timer_Riego = OFF;
 	flag_regar = OFF;
 	return;
 }

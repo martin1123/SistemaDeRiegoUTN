@@ -22,7 +22,7 @@ int getTemp(int t)
 
 uint8_t getHumedad(uint8_t h)
 {
-	uint16_t result;
+	int result;
 	if((result = getSensorValue(AD0DR2)))
 	{
 		return convertToHum(result);
@@ -62,10 +62,12 @@ int convertToTemp(int n)
 	  return (int)Temp;  // Return the Temperature
 }
 
-uint8_t convertToHum(uint16_t n)
+uint8_t convertToHum(int n)
 {
-	//Ver como convertir humedad. Si es lineal o exponencial
-	return 1;
+	//0 es un 100% de humedad y 4095 es un 0% de humedad
+	n = 4095 - n;
+
+	return (uint8_t)(n*100/4095);
 }
 
 uint8_t convertToLvlH2O(uint16_t n)
