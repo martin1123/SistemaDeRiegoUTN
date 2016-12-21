@@ -9,10 +9,10 @@
 #include "sensors.h"
 #include <math.h>
 
-short getTemp(short t)
+int getTemp(int t)
 {
-	uint16_t result;
-	if((result = sensorTemp(AD0DR1)))
+	int result;
+	if((result = getSensorValue(AD0DR1)))
 	{
 		return convertToTemp(result);
 	}
@@ -42,13 +42,13 @@ uint8_t getlvlH2O(uint8_t lvl)
 	return lvl;
 }
 
-short convertToTemp(uint16_t n)
+int convertToTemp(int n)
 {
 	  long Resistance;
 	  double Temp;
 
-	  // Assuming a 10k Thermistor.  Calculation is actually: Resistance = (4096/ADC)
-	  Resistance=((40960000/n) - 10000);
+	  // Assuming a 10k Thermistor.  Calculation is actually: Resistance = (1024/ADC)
+	  Resistance=((10240000/n) - 10000);
 
 	  /******************************************************************/
 	  /* Utilizes the Steinhart-Hart Thermistor Equation:				*/
@@ -59,7 +59,7 @@ short convertToTemp(uint16_t n)
 	  Temp = 1 / (0.001129148 + (0.000234125 * Temp) + (0.0000000876741 * Temp * Temp * Temp));
 	  Temp = Temp - 273.15;  // Convert Kelvin to Celsius
 
-	  return (short)Temp;  // Return the Temperature
+	  return (int)Temp;  // Return the Temperature
 }
 
 uint8_t convertToHum(uint16_t n)

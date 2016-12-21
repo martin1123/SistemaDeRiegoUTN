@@ -86,4 +86,6 @@ extern volatile uint8_t bufferRxFull;
 #define SALIDA 1
 #define ENTRADA 0
 
+uint8_t acceptable_level(uint8_t level);
+
 #endif

@@ -52,11 +52,11 @@
 #define PIN_HUM   0
 
 void InitSensores();
-short getTemp(short t);
+int getTemp(int t);
 uint8_t getHumedad(uint8_t h);
 uint8_t getlvlH2O(uint8_t lvl);
 int getSensorValue(int reg);
-short convertToTemp(uint16_t n);
+int convertToTemp(int n);
 uint8_t convertToLvlH2O(uint16_t n);
 uint8_t convertToHum(uint16_t n);
 

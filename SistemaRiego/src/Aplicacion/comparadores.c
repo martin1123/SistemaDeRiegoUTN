@@ -24,5 +24,5 @@ uint8_t acceptable_moisture(uint8_t h)
  * es aceptable. EN caso de no serlo se procede a activar alarma*/
 uint8_t acceptable_level(uint8_t level)
 {
-	return 1;
+	return lvlH2O > 10;
 }

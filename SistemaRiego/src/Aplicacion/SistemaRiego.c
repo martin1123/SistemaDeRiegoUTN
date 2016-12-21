@@ -104,7 +104,7 @@ int main (void)
 /**/
 void ActualizarDatos ( void )
 {
-	//temp = getTemp(temp);
+	temp = (uint16_t)getTemp(temp);
 	//humedad = getHumedad(humedad);
 	lvlH2O = getlvlH2O(lvlH2O);
 
