@@ -14,7 +14,7 @@ void activarRiego(uint8_t timer_status)
 	encenderRegado();
 
 	if(!timer_status)
-		TimerStart(TIMER_EV_RIEGO, 40);
+		TimerStart(TIMER_EV_RIEGO, timer_regado);
 
 	return;
 }

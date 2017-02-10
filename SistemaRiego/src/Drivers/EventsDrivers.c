@@ -11,11 +11,11 @@
 void encenderRegado(void)
 {
 	//Driver que envía señal para encender bomba de agua
-	//setPin(PORT_BOMB,PORT_BOMB,1);
+	write_pin(PORT_BOMB,PIN_BOMB,1);
 }
 
 void apagarRegado(void)
 {
 	//Driver que envía señal para apagar bomba de agua
-	//setPin(PORT_BOMB,PORT_BOMB,0);
+	write_pin(PORT_BOMB,PIN_BOMB,0);
 }

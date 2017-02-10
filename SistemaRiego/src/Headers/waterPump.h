@@ -11,4 +11,7 @@
 
 void InitBomba();
 
+#define PORT_BOMB 0 //Puerto de la bomba de agua
+#define PIN_BOMB  0 //Pin de la bomba de agua
+
 #endif /* HEADERS_WATERPUMP_H_ */

@@ -64,6 +64,14 @@ volatile flagST_t EXPIRED_ACK = OFF;
 volatile flagST_t flag_alarm = OFF;
 
 /*========================================*/
+/*                 Umbrales               */
+/*========================================*/
+
+volatile uint8_t  umbral_H2O; //Indica nivel de agua minimo antes de que suene alarma para recargar el tanque de agua
+volatile uint8_t  umbral_temp; //Indica nivel de temperatura máximo antes de que se active el regado
+volatile uint8_t  umbral_humedad; //Indica nivel de humedad minimo antes de que se active el regado
+
+/*========================================*/
 /*                 TIMERS                 */
 /*========================================*/
 /*
@@ -75,9 +83,11 @@ volatile flagST_t flag_alarm = OFF;
  * 6) Timer de regado
  * 7) Timer de alarma cuando lvl h2o es bajo
  */
-
 volatile uint8_t timer_events;//Variable que cada bit simboliza cuando vence un timer.
 volatile uint8_t timer_vector[TIMERS_CANT];//Vector de timers. Cada posicion simboliza un timer.
+
+
+volatile uint8_t timer_regado; //Tiempo de regado
 
 void ActualizarDatos ( void );
 

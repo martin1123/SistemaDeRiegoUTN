@@ -63,12 +63,15 @@ extern volatile flagST_t EXPIRED_ACK;
 extern volatile flagST_t RECEIVED_ACK;
 extern volatile uint8_t timer_events;
 extern volatile uint8_t timer_vector[];
+extern volatile uint8_t timer_regado;
 extern volatile flagST_t flag_alarm;
 extern volatile uint8_t bufferTxEmpty;
 extern volatile uint8_t bufferRxEmpty;
 extern volatile uint8_t bufferTxFull;
 extern volatile uint8_t bufferRxFull;
-
+extern volatile uint8_t  umbral_H2O;
+extern volatile uint8_t  umbral_temp;
+extern volatile uint8_t  umbral_humedad;
 
 #define 	PCONP	(* ( ( registro_t  * ) 0x400FC0C4UL ))
 
