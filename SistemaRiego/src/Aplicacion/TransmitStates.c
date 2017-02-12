@@ -96,6 +96,7 @@ void confirmTransmission(void)
 	if(RECEIVED_ACK)
 	{
 		RECEIVED_ACK = OFF; //Desactiva flag
+		EXPIRED_ACK = OFF; //Desactiva el flag en caso de que justo haya expirado el tiempo de espera del ack y se haya recibido el mismo
 		TimerStop(TIMER_EV_UART_ACK);//desactiva timer de ack
 		restartTimer();//Restartea los timers correspondientes del dato enviado
 		reintentos = 2;
