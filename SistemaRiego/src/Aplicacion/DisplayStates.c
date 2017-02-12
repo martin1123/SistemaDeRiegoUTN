@@ -16,7 +16,7 @@
 char msg_renglon[16];
 
 /*Display Machine Vector*/
-void (*DMV[])(void) = {showHyT,showH2O,showDateAndHour,showRiego,showH2OLow,showConfigDate};
+void (*DMV[])(void) = {showHyT,showH2O,showDateAndHour,showRiego,showH2OLow};
 
 /*States flag*/
 //Se inicia en el estado que muestra humedad y temperatura
@@ -45,13 +45,6 @@ void showHyT(void)
 		//Se pasa al estado que muestra en pantalla un mensaje que indica que se esta regando
 		refreshLCD();
 		f_states = Disp_Riego;
-	}
-
-	else if(flag_config)
-	{
-		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
-		f_states = Disp_Config_Date;
-		refreshLCD();
 	}
 	else if(flag_timerDisplay)
 	{
@@ -84,13 +77,6 @@ void showH2O(void)
 		//Se pasa al estado que muestra en pantalla un mensaje que indica que se esta regando
 		f_states = Disp_Riego;
 	}
-	else if(flag_config)
-	{
-		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
-		f_states = Disp_Config_Date;
-		refreshLCD();
-	}
-
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla la fecha y hora y se cambia estado de flag
@@ -123,12 +109,6 @@ void showDateAndHour(void)
 		f_states = Disp_Riego;
 		refreshLCD();
 	}
-	else if(flag_config)
-	{
-		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
-		f_states = Disp_Config_Date;
-		refreshLCD();
-	}
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla la humedad y temperatura y se cambia estado de flag
@@ -139,13 +119,6 @@ void showDateAndHour(void)
 	}
 
 	return;
-}
-
-void showConfigDate(void)
-{
-	refreshLCD();
-	//COMPLETAR!!!!!
-	f_states = Disp_Date_Hour;
 }
 
 void showH2OLow(void)

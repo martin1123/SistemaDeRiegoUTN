@@ -44,12 +44,11 @@ extern volatile uint8_t lvlH2O;
 //Porcentaje de nivel de agua en tanque
 extern volatile flagST_t flag_H2OBajo;
 extern volatile flagST_t flag_regar;
-extern volatile flagST_t flag_config;
 extern volatile flagST_t flag_timerDisplay;
 extern volatile flagST_t timer_temp;
 extern volatile flagST_t timer_humedad;
 extern volatile flagST_t timer_h2o;
-extern volatile flagST_t timer_Riego;
+extern volatile flagST_t timer_RiegoFinalizado;
 extern volatile flagST_t f_UARTRx_cHora;
 extern volatile flagST_t f_UARTRx_regar;
 extern volatile flagST_t f_UARTRx_cAlarma;

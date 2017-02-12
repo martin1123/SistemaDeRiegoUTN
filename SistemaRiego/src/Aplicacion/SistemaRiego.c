@@ -50,10 +50,9 @@ volatile uint8_t bufferRxFull = OFF;
 /*FLAGS de sensores*/
 volatile flagST_t flag_H2OBajo = OFF; //Configurado en ON. Configurar en OFF cuando se detecte nivel de agua estable
 volatile flagST_t flag_regar = OFF; //Configurado en ON. Configurar en OFF cuando se termine de regar. Recordar activar por presionar boton d eriego o por PC mediante UART.
-volatile flagST_t flag_config = OFF; //Configurar flag en ON y OFF
 volatile flagST_t flag_timerDisplay = OFF; //Configurar coomo timer 1
 volatile flagST_t timer_h2o = OFF; //Configurar. Ver que uso se le puede dar
-volatile flagST_t timer_Riego = OFF; //Configurar co
+volatile flagST_t timer_RiegoFinalizado = OFF; //Configurar co
 volatile flagST_t UART_STATUS = OFF;//Flag que indica si hay un dispositivo conectado mediante UART
 volatile flagST_t TRANSMIT_H = OFF;
 volatile flagST_t TRANSMIT_TEMP = OFF;
@@ -103,7 +102,6 @@ int main (void)
 		Transmit_Machine();//Maquina que se encarga de la transmisión de datos por UART
 		Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
 		Display_machine();//Maquina que maneja el muestreo de información en el display 16X2
-		//Date_config_Machine();//Máquina que se encarga del manejo de la configuracion manual de fecha y hora por parte del usuario
 		Alarm_Machine();
 
 	}

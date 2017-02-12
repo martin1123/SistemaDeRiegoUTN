@@ -45,7 +45,7 @@ void regando(void)
 	timer_on = 1;
 
 	/*Si vencio timer de riego*/
-	if(timer_Riego == ON)
+	if(timer_RiegoFinalizado == ON)
 	{
 		timer_on = 0;
 		desactivarRiego();

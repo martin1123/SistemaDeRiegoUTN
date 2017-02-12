@@ -19,10 +19,9 @@ void showH2O(void);
 void showDateAndHour(void);
 void showRiego(void);
 void showH2OLow(void);
-void showConfigDate(void);
 void refreshLCD(void);
 
-enum dispStates{Disp_HyT, Disp_H2O, Disp_Date_Hour, Disp_Riego, Disp_H2O_Low, Disp_Config_Date};
+enum dispStates{Disp_HyT, Disp_H2O, Disp_Date_Hour, Disp_Riego, Disp_H2O_Low};
 
 
 #endif /* HEADERS_DISPLAYSTATES_H_ */

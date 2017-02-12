@@ -22,7 +22,7 @@ void activarRiego(uint8_t timer_status)
 void desactivarRiego(void)
 {
 	apagarRegado();
-	timer_Riego = OFF;
+	timer_RiegoFinalizado = OFF;
 	flag_regar = OFF;
 	return;
 }

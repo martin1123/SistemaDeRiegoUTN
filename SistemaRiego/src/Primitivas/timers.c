@@ -51,7 +51,7 @@ void TimerEvent(void)
 	if(timer_events & ((uint8_t)0x01 << 5))
 	{
 		timer_events &= ~(0x01 << 5);
-		timer_Riego = ON;
+		timer_RiegoFinalizado = ON;
 	}
 
 	/*Pregunto si vencio timer para la alarma por nivel bajo de agua*/
