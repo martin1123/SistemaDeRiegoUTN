@@ -40,6 +40,9 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 		case COM_CONFIG:
 			sz_sub = SIZE_SUB_CONFIGURAR;
 			break;
+		case COM_QUERY:
+			sz_sub = SIZE_SUB_QUERY;
+			break;
 		default:
 			break; //Este caso es imposible que pase
 	}
@@ -60,7 +63,7 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 
 }
 
-void executeCommand(uint8_t comm_pos, uint8_t scomm_pos)
+void executeCommand(uint8_t comm_pos, uint8_t scomm_pos, uint8_t * trama)
 {
 	switch(commands[comm_pos].command)
 	{
@@ -70,10 +73,53 @@ void executeCommand(uint8_t comm_pos, uint8_t scomm_pos)
 
 		case COM_REGAR:
 			flag_regar = ON;
+			TRANSMIT_ACK = ON;
 			break;
 
 		case COM_CONFIG:
-			config(scomm_pos);
+			config(scomm_pos, trama);
+			TRANSMIT_ACK = ON;
+			break;
+
+		case COM_QUERY:
+			query(scomm_pos);
+	        break;
+
+		default:
+			break;
+	}
+}
+
+void config(uint8_t scomm_pos, uint8_t * trama)
+{
+	switch(commands[POS_COM_CONF].sub->subCommand)
+	{
+		case SUB_TIME_R:
+			RTCGPREG4 = timer_regado = *trama;//Revisar
+			break;
+
+		case SUB_HORA:
+			RTCHOUR = *trama;
+			RTCMIN  = *(trama+1);
+			RTCSEC  = *(trama+2);
+			break;
+
+		case SUB_FECHA:
+			RTCYEAR  = (*trama * 100) + *(trama+1); //Se forma el año
+			RTCMONTH = *(trama+2);
+			RTCDOM   = *(trama+3);
+			break;
+
+		case SUB_UMBRAL_H:
+			RTCGPREG3 = umbral_humedad = *trama;
+			break;
+
+		case SUB_UMRAL_H2O:
+			RTCGPREG1 = umbral_H2O = *trama;
+			break;
+
+		case SUB_UMRAL_TEMP:
+			RTCGPREG2 = umbral_temp = *trama; //Asume que siempre va a ser una temperatura positiva
 			break;
 
 		default:
@@ -81,26 +127,27 @@ void executeCommand(uint8_t comm_pos, uint8_t scomm_pos)
 	}
 }
 
-void config(uint8_t scomm_pos)
+void query(uint8_t scomm_pos)
 {
-	switch(commands[POS_COM_REGAR].sub->subCommand)
+	switch(commands[POS_COM_QUERY].sub->subCommand)
 	{
 		case SUB_TIME_R:
-			break;
-
-		case SUB_HORA:
-			break;
-
-		case SUB_FECHA:
+			TRANSMIT_TIME_REGADO = ON;
 			break;
 
 		case SUB_UMBRAL_H:
+			TRANSMIT_UMBRAL_HUM = ON;
 			break;
 
-		case SUB_ALARM:
+		case SUB_UMRAL_H2O:
+			TRANSMIT_UMBRAL_H2O = ON;
+			break;
+
+		case SUB_UMRAL_TEMP:
+			TRANSMIT_UMBRAL_TEMP = ON;
 			break;
 
 		default:
-			break;
+			break;//No se realiza ninguna accion
 	}
 }

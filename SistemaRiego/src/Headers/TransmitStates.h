@@ -12,7 +12,7 @@
 #define BUFF_TRAMA_SZ 16
 
 enum transmitState{STATE_NO_TRANS,STATE_TRANS_DATA,STATE_TRANS_ACK,STATE_TRANS_CONFIRM}; //Respetar orden del vector TMV del fuente TransmitStates
-enum transmitData{NO_DATA, TRANS_TEMP, TRANS_HUM, TRANS_LVLH2O, TRANS_REG,TRANS_ACK};
+enum transmitData{NO_DATA, TRANS_TEMP, TRANS_HUM, TRANS_LVLH2O, TRANS_REG,TRANS_ACK,TRANS_UMBRAL_HUM,TRANS_UMBRAL_H2O,TRANS_UMBRAL_TEMP, TRANS_TIME_REG};
 
 void Transmit_Machine(void);
 void no_transmit(void);

@@ -94,7 +94,7 @@ void Receiving(void)
 			//Verifica que comando se recibio. En caso de no recibir un comando válido no se realiza ninguna acción.
 			if(verificarComando(trama+2, i-3, &cpos, &scpos))
 				//Verificado el comando, se procede a ejecutarlo
-				executeCommand(cpos,scpos);
+				executeCommand(cpos,scpos,trama+4);
 
 			i = 0;
 		}

@@ -52,7 +52,30 @@ void no_transmit(void)
 			TRANSMIT_ACK = OFF;
 			t_state = STATE_TRANS_ACK;
 		}
-
+		else if(TRANSMIT_UMBRAL_H2O)
+		{
+			/*Se transmite configuracion del umbral de H2O*/
+			TRANSMIT_UMBRAL_H2O = OFF;
+			dataToTrans = TRANS_UMBRAL_H2O;
+		}
+		else if(TRANSMIT_UMBRAL_HUM)
+		{
+			/*Se transmite configuracion del umbral de Humedad*/
+			TRANSMIT_UMBRAL_HUM = OFF;
+			dataToTrans = TRANS_UMBRAL_HUM;
+		}
+		else if(TRANSMIT_UMBRAL_TEMP)
+		{
+			/*Se transmite configuracion del umbral de Temperatura*/
+			TRANSMIT_UMBRAL_TEMP = OFF;
+			dataToTrans = TRANS_UMBRAL_TEMP;
+		}
+		else if(TRANSMIT_TIME_REGADO)
+		{
+			/*Se transmite configuracion del tiempo de regado*/
+			TRANSMIT_TIME_REGADO = OFF;
+			dataToTrans = TRANS_TIME_REG;
+		}
 		/*Si hay datos a transmitir pasa al estado de transmisión de datos*/
 		if(dataToTrans != NO_DATA)
 			t_state = STATE_TRANS_DATA;

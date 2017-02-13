@@ -57,6 +57,10 @@ volatile flagST_t UART_STATUS = OFF;//Flag que indica si hay un dispositivo cone
 volatile flagST_t TRANSMIT_H = OFF;
 volatile flagST_t TRANSMIT_TEMP = OFF;
 volatile flagST_t TRANSMIT_H2O = OFF;
+volatile flagST_t TRANSMIT_UMBRAL_H2O = OFF;
+volatile flagST_t TRANSMIT_UMBRAL_HUM = OFF;
+volatile flagST_t TRANSMIT_UMBRAL_TEMP = OFF;
+volatile flagST_t TRANSMIT_TIME_REGADO = OFF;
 volatile flagST_t TRANSMIT_ACK = OFF;
 volatile flagST_t RECEIVED_ACK = OFF; //Flag que indica si se recibio un ACK
 volatile flagST_t EXPIRED_ACK = OFF;
@@ -103,7 +107,6 @@ int main (void)
 		Event_Machine();//Máquina que se encarga de disparar eventos como regado o alarma por bajo nivel de h2o*/
 		Display_machine();//Maquina que maneja el muestreo de información en el display 16X2
 		Alarm_Machine();
-
 	}
 
 	return 0;

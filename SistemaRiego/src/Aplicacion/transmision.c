@@ -59,6 +59,26 @@ uint8_t armarTrama(uint8_t *trama, enum transmitData s)
 			trama[4] = lvlH2O;
 			break;
 
+		case TRANS_UMBRAL_H2O:
+			pos_command = POS_COM_CONF;
+			pos_subcommand = POS_SUBCOM_UMBRAL_H2O;
+			break;
+
+		case TRANS_UMBRAL_HUM:
+			pos_command = POS_COM_CONF;
+			pos_subcommand = POS_SUBCOM_UMBRAL_HUM;
+			break;
+
+		case TRANS_UMBRAL_TEMP:
+			pos_command = POS_COM_CONF;
+			pos_subcommand = POS_SUBCOM_UMBRAL_TEMP;
+			break;
+
+		case TRANS_TIME_REG:
+			pos_command = POS_COM_CONF;
+			pos_subcommand = POS_SUBCOM_TIME_REG;
+			break;
+
 		case TRANS_ACK:
 			/*En este caso, solo se envia el comando y subcomando, sin ningun dato adicional
 			 * ya que solo es una confirmacion de recepcion de un dato*/
