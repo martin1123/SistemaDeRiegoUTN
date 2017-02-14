@@ -10,7 +10,7 @@
 #include "infotronic.h"
 #include "Commands.h"
 
-sub_command_t sub_informar[] = {{SUB_HUMEDAD,1},{SUB_TEMP,1},{SUB_LVLH2O,1},{SUB_ALARM,1}};
+sub_command_t sub_informar[] = {{SUB_HUMEDAD,1},{SUB_TEMP,1},{SUB_LVLH2O,1},{SUB_ALARM,1},{SUB_CONN_PC,1},{SUB_DESCONN_PC,1}};
 
 sub_command_t sub_configurar[] = {{SUB_UMBRAL_H,1},{SUB_TIME_R,2},{SUB_UMRAL_H2O,1},{SUB_UMRAL_TEMP,1},{SUB_HORA,3},{SUB_FECHA,4}};
 

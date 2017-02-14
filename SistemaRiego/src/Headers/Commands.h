@@ -29,6 +29,8 @@
 #define SUB_FECHA      0x46
 #define SUB_MACETA     0x41
 #define SUB_REGAR      0x52
+#define SUB_CONN_PC    0x58
+#define SUB_DESCONN_PC 0x59
 
 /*Posiciones en array de estructuras de los comandos y subcomandos*/
 #define POS_COM_INFORM         0
@@ -41,6 +43,8 @@
 #define POS_SUBCOM_TEMP        1
 #define POS_SUBCOM_LVLH2O      2
 #define POS_SUBCOM_ALARM       3
+#define POS_SUBCOM_CONN_PC     4
+#define POS_SUBCOM_DESCONN_PC  5
 /*Posiciones Subcomando ACK*/
 #define POS_SUBCOM_ACK         0
 /*Posiciones sub comandos de configuracion. Los primeros 4 tambien conrresponden a los subcomandos de consulta(query)*/
@@ -53,7 +57,7 @@
 
 //Tamaño del vector de las estruturas
 #define SIZE_COMMANDS       4
-#define SIZE_SUB_INFORMAR   4
+#define SIZE_SUB_INFORMAR   6
 #define SIZE_SUB_CONFIGURAR 6
 #define SIZE_SUB_QUERY      4
 #define SIZE_SUB_REGAR      1

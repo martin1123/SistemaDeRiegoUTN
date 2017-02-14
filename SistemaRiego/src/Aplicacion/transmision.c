@@ -14,8 +14,7 @@
 
 uint8_t isEnabledUART()
 {
-	return 1;
-	//return UART_STATUS;
+	return UART_STATUS;
 }
 
 /*Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
