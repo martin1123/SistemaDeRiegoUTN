@@ -1,9 +1,11 @@
-/*
- * transmision.c
- *
- *  Created on: 10 de nov. de 2016
- *      Author: Martin
- */
+/**
+	\file transmision.c
+	\brief Funciones necesarias para la transmisión de datos por UART.
+	\details Se proveen funciones que sirven para que siguiendo el protocolo de comunicación establecido, se arme la trama
+	         del comando o mensaje a transmitir, y luego se transmita el mismo.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 #include "transmision.h"
 

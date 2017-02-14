@@ -1,12 +1,12 @@
 /**
 	\file SistemaRiego.c
 	\brief Sistema de riego automatizado.
-	\details Sistema de riego automatizado que activa el riego de las macetas de 3 formas distintas.
-	         El riego se activa por humedad baja detectada en las macetas, por una alarma programada por el usuario
-	         o por la pulsación de un botón, el cual permite el riego de forma manual.
+	\details Sistema de riego automatizado que activa el riego de las macetas de 2 formas distintas.
+	         El riego se activa por humedad baja detectada en las macetas,o de forma manual por el usuario
+	         a traves del programa realizado para una computadora.
 	         Además de lo mencionado, el sistema provee una comunicación por puerto serie con una computadora,
-	         a través de la cual se va a poder monitorear el estado actual del sistema, se podrá realizar diversas configuraciones,
-	         y a su vez activar el riego de forma manual. Para ello se deberá instalar el software correspondiente al sistema.
+	         a través de la cual se va a poder monitorear el estado actual del sistema, y se podrán realizar diversas configuraciones.
+	         Para ello se deberá instalar el software correspondiente al sistema.
 	\author Grupo II, curso R2053
 	\version 1.0.0
 */

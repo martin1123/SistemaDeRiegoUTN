@@ -1,9 +1,10 @@
-/*
- * AlarmMachine.c
- *
- *  Created on: 17/12/2016
- *      Author: Martin
- */
+/**
+	\file AlarmMachine.c
+	\brief Maquina de estados de alarma
+	\details Alarma que se activa cuando flag_alarm es ON.
+	\author Grupo II, curso R2053
+	\version 1.0.0
+*/
 #include "infotronic.h"
 
 /*MAV: Machine Alarm Vector*/
@@ -11,6 +12,7 @@ void (*MAV[])(void) = {alarmOff,alarmBeep};
 
 /*Variable que indica estado*/
 enum alarmStates aState = ALARM_OFF;
+
 
 void Alarm_Machine(void)
 {
