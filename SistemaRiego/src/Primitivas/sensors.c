@@ -11,10 +11,10 @@
 
 int getTemp(int t)
 {
-	int result;
-	if((result = getSensorValue(AD0DR1)))
+	static int result = 0;
+	if((result = getSensorValue(AD0DR1,result)))
 	{
-		return convertToTemp(result);
+		return result;
 	}
 
 	return t;
@@ -22,8 +22,8 @@ int getTemp(int t)
 
 uint8_t getHumedad(uint8_t h)
 {
-	int result;
-	if((result = getSensorValue(AD0DR2)))
+	static int result = 0;
+	if((result = getSensorValue(AD0DR2,result)))
 	{
 		return convertToHum(result);
 	}
@@ -33,8 +33,8 @@ uint8_t getHumedad(uint8_t h)
 
 uint8_t getlvlH2O(uint8_t lvl)
 {
-	int result;
-	if((result = getSensorValue(AD0DR5)))
+	static int result = 0;
+	if((result = getSensorValue(AD0DR5, result)))
 	{
 		return convertToLvlH2O(result);
 	}
@@ -44,22 +44,14 @@ uint8_t getlvlH2O(uint8_t lvl)
 
 int convertToTemp(int n)
 {
-	  long Resistance;
-	  double Temp;
+	float Rtherm, Temp;
 
-	  // Assuming a 10k Thermistor.  Calculation is actually: Resistance = (1024/ADC)
-	  Resistance=((10240000/n) - 10000);
+    Rtherm = 10000 / (4096 / n - 1.0);
 
-	  /******************************************************************/
-	  /* Utilizes the Steinhart-Hart Thermistor Equation:				*/
-	  /*    Temperature in Kelvin = 1 / {A + B[ln(R)] + C[ln(R)]^3}		*/
-	  /*    where A = 0.001129148, B = 0.000234125 and C = 8.76741E-08	*/
-	  /******************************************************************/
-	  Temp = log(Resistance);
-	  Temp = 1 / (0.001129148 + (0.000234125 * Temp) + (0.0000000876741 * Temp * Temp * Temp));
-	  Temp = Temp - 273.15;  // Convert Kelvin to Celsius
+    Temp = (1.0 / (log(Rtherm/10000)/4050)+(1.0/298.15)) - 273.15;
 
-	  return (int)Temp;  // Return the Temperature
+    return (int)Temp;  // Return the Temperature
+
 }
 
 uint8_t convertToHum(int n)

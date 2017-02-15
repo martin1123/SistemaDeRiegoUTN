@@ -40,13 +40,12 @@ void InitSensores()
 
 }
 
-int getSensorValue(int registro)
+int getSensorValue(int registro, int valor)
 {
-	static int resultado = 0;
 
 	if ( ADC_DONE (registro) ){ //Verifico nivel H2O
-		resultado = ( registro >> 4 ) & 0x0000FFFF;
+		valor = ( registro >> 4 ) & 0x0000FFFF;
 	}
 
-	return resultado;
+	return valor;
 }

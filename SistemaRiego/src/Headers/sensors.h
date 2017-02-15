@@ -55,7 +55,7 @@ void InitSensores();
 int getTemp(int t);
 uint8_t getHumedad(uint8_t h);
 uint8_t getlvlH2O(uint8_t lvl);
-int getSensorValue(int reg);
+int getSensorValue(int reg, int resultado);
 int convertToTemp(int n);
 uint8_t convertToLvlH2O(uint16_t n);
 uint8_t convertToHum(int n);
