@@ -27,7 +27,7 @@ sub_command_t sub_informar[] = {{SUB_HUMEDAD,1},{SUB_TEMP,1},{SUB_LVLH2O,1},{SUB
 
 /*=======================================================*
  *        Sub Comandos del comando configurar            *
-/*====================================================== */
+ *====================================================== */
 /* SUB_UMBRAL_H:   subcomando que configura el umbral de humedad minima. Este mensaje se envia desde la PC al LPC.
  * SUB_TIME_R:     Subcomando que configura el tiempo de regado. Este mensaje se envia desde la PC al LPC.
  * SUB_UMRAL_H2O:  Subcomando que configura el umbral de H2O minima en tanque. Este mensaje se envia desde la PC al LPC.
@@ -39,14 +39,14 @@ sub_command_t sub_configurar[] = {{SUB_UMBRAL_H,1},{SUB_TIME_R,2},{SUB_UMRAL_H2O
 
 /*=======================================================*
  *            Sub Comandos del comando regar             *
-/*====================================================== */
+ *====================================================== */
 /* SUB_REGAR:    Subcomando que ordena al LPC a activar el riego. Esta orden se envia desde la PC al LPC cuando se activa el riego de forma manual.
  */
 sub_command_t sub_regar[] = {{SUB_REGAR,1}};
 
 /*=======================================================*
  *            Sub Comandos del comando query             *
-/*====================================================== */
+ *====================================================== */
 /* SUB_UMBRAL_H:   subcomando que consulta el umbral de humedad minima. Este mensaje se envia desde la PC al LPC.
  * SUB_TIME_R:     Subcomando que consulta el tiempo de regado. Este mensaje se envia desde la PC al LPC.
  * SUB_UMRAL_H2O:  Subcomando que consulta el umbral de H2O minima en tanque. Este mensaje se envia desde la PC al LPC.
@@ -56,12 +56,12 @@ sub_command_t sub_query[] = {{SUB_UMBRAL_H,1},{SUB_TIME_R,2},{SUB_UMRAL_H2O,1},{
 
 /*=======================================================*
  *              Sub Comandos del comando ack             *
-/*====================================================== */
+ *====================================================== */
 sub_command_t sub_ack[] = {{0,0}}; //No tiene subcomandos
 
 /*=======================================================*
  *                      COMANDOS                         *
-/*====================================================== */
+ *====================================================== */
 /* COM_INFORMAR: Notificaciones.
  * COM_CONFIG:   Configuraciones.
  * COM_ACK:      Respuesta de un mensaje.
