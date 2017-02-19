@@ -33,7 +33,7 @@ void UART0_IRQHandler (void)
 
     do
       {
-        aux = U1IIR; // una vez que lo lei se resetea
+        aux = U0IIR; // una vez que lo lei se resetea
 
         switch (aux & 0x06)
            {
