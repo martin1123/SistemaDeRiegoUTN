@@ -26,7 +26,7 @@ void InitUART0(void)
     ISER0 |= (1<<6);
 }
 
-void UART1_IRQHandler (void)
+void UART0_IRQHandler (void)
 {
  uint8_t aux , dato;
  int dato_tx;
