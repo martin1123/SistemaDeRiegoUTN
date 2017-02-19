@@ -16,7 +16,7 @@
 #include "gpio.h"
 #include "systick.h"
 #include "pinConf.h"
-#include "uart1.h"
+#include "uart0.h"
 #include "serial.h"
 #include "rtc.h"
 #include "timers.h"
