@@ -112,7 +112,7 @@ void enableUART(uint8_t * trama){
 
 void config(uint8_t scomm_pos, uint8_t * trama)
 {
-	switch(commands[POS_COM_CONF].sub->subCommand)
+	switch(commands[POS_COM_CONF].sub[scomm_pos].subCommand)
 	{
 		case SUB_TIME_R:
 			RTCGPREG4 = timer_regado = *trama;//Revisar
