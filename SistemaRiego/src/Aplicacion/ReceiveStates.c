@@ -41,13 +41,16 @@ void Receiving(void)
 {
 	static uint8_t i = 0;
 	static uint8_t trama[BUFF_TRAMA_SZ];
-	int dato;
+	int dato,j;
 	uint8_t sz, cpos, scpos;
 
 
 	//Si i es igual a 0 asigno el byte de start para tener la trama completa y verifico si se recibio el byte que indica size del comando, subcomando y datos
 	if(!i)
 	{
+		for(j = 0; j < BUFF_TRAMA_SZ; j++)
+				trama[j] = 0;
+
 		trama[0] = B_START;
 		dato = PopRx();
 
@@ -56,6 +59,7 @@ void Receiving(void)
 		{
 			trama[++i] = (uint8_t)dato;
 			sz = (uint8_t)dato + 4; //Size de la trama a recibir
+			i++;
 		}
 		else
 			return;
@@ -63,7 +67,7 @@ void Receiving(void)
 
 
 	//Va llenando la trama con los datos de recepción hasta que la cola quede vacía, o hasta que se encuentre byte de stop
-	for(i = 2; i < sz && (dato = PopRx()) >= 0; i++)
+	for(; i < sz && (dato = PopRx()) >= 0; i++)
 	{
 		trama[i] = (uint8_t) dato;
 		//Verifico si llego byte de stop, y que además llegue en la posición esperada
