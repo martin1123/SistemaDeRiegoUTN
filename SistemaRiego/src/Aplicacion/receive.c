@@ -68,7 +68,7 @@ void executeCommand(uint8_t comm_pos, uint8_t scomm_pos, uint8_t * trama)
 	switch(commands[comm_pos].command)
 	{
 		case COM_INFORMAR:
-			enableUART(trama);
+			enableUART(scomm_pos, trama);
 			break;
 		case COM_ACK:
 			RECEIVED_ACK = ON;
@@ -93,8 +93,8 @@ void executeCommand(uint8_t comm_pos, uint8_t scomm_pos, uint8_t * trama)
 	}
 }
 
-void enableUART(uint8_t * trama){
-	switch(*trama){
+void enableUART(uint8_t scomm_pos, uint8_t * trama){
+	switch(commands[POS_COM_INFORM].sub[scomm_pos].subCommand){
 		case SUB_CONN_PC:
 			//Se activa comunicacion con UART
 			UART_STATUS = ON;
