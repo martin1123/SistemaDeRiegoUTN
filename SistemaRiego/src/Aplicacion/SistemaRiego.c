@@ -87,7 +87,7 @@ volatile uint8_t  umbral_humedad; //Indica nivel de humedad minimo antes de que 
  * 7) Timer de alarma cuando lvl h2o es bajo
  */
 volatile uint8_t timer_events;//Variable que cada bit simboliza cuando vence un timer.
-volatile uint8_t timer_vector[TIMERS_CANT];//Vector de timers. Cada posicion simboliza un timer.
+volatile uint16_t timer_vector[TIMERS_CANT];//Vector de timers. Cada posicion simboliza un timer.
 
 
 volatile uint8_t timer_regado; //Tiempo de regado

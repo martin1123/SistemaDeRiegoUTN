@@ -101,7 +101,7 @@
 void TimerEvent(void);
 void initTimers();
 void TimerStop(uint8_t ev);
-void TimerStart(uint8_t ev, uint8_t time);
+void TimerStart(uint8_t ev, uint16_t time);
 void TimerClose(void);
 void AnalizarTimer(void);
 

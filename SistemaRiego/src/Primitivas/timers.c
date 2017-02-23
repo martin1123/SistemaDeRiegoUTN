@@ -82,7 +82,7 @@ void TimerStop(uint8_t ev)
 	SYSTICK_PUNT->STCTRL |= (0x01 << 1); //TINCKINT ON
 }
 
-void TimerStart(uint8_t ev, uint8_t time)
+void TimerStart(uint8_t ev, uint16_t time)
 {
 	SYSTICK_PUNT->STCTRL &= ~(0x01 << 1); //TINCKINT OFF
 	timer_vector[ev] = time;

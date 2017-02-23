@@ -28,7 +28,7 @@
 #define SUB_HORA       0x48
 #define SUB_FECHA      0x46
 #define SUB_MACETA     0x41
-#define SUB_REGAR      0x52
+#define SUB_REGAR      0x41
 #define SUB_CONN_PC    0x58
 #define SUB_DESCONN_PC 0x59
 

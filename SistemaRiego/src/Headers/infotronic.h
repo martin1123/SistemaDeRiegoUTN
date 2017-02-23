@@ -65,7 +65,7 @@ extern volatile flagST_t TRANSMIT_ACK;
 extern volatile flagST_t EXPIRED_ACK;
 extern volatile flagST_t RECEIVED_ACK;
 extern volatile uint8_t timer_events;
-extern volatile uint8_t timer_vector[];
+extern volatile uint16_t timer_vector[];
 extern volatile uint8_t timer_regado;
 extern volatile flagST_t flag_alarm;
 extern volatile uint8_t bufferTxEmpty;
