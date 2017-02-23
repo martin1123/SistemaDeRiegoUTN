@@ -49,7 +49,7 @@
 #define PORT_H2O  1
 #define PIN_H2O   31
 #define PORT_HUM  0
-#define PIN_HUM   0
+#define PIN_HUM   25
 
 void InitSensores();
 int getTemp(int t);
