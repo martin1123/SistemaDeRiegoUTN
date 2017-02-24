@@ -13,12 +13,41 @@ void (*MAV[])(void) = {alarmOff,alarmBeep};
 /*Variable que indica estado*/
 enum alarmStates aState = ALARM_OFF;
 
+/**
+	\fn void Alarm_Machine(void)
+	\brief Funcion de entrada a la máquina de estados de la alarma
 
+	\details Esta funcion utiliza un array de punteros a funcion que determina el estado de la máquina
+	         que se debe ejecutar.
+
+	\param [in]
+	\param [out]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void Alarm_Machine(void)
 {
 	MAV[aState]();
 }
 
+/**
+	\fn void alarmOff(void)
+	\brief Estado de alarma apagada
+
+	\details En este estado, se analiza si el flag_alarm esta activado. Mientras este desactivado
+	         la máquina se va a mantener en el mismo estado sin realizar ninguna acción. En caso
+	         de estar activado se pasa al estado alarmBeep.
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void alarmOff(void)
 {
 	if(flag_alarm)
@@ -29,6 +58,19 @@ void alarmOff(void)
 	}
 }
 
+/**
+	\fn void alarmBeep(void)
+	\brief Estado de alarma encendida
+
+	\details En este estado, se analiza si el flag_alarm se desactiva. Mientras este activado dicho flag
+	         va a sonar una alarma. Una vez que se encuentre el flag desactivado, se apaga la alarma y se pasa al estado alarmOff
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void alarmBeep(void)
 {
 	static uint8_t beep = 3;
