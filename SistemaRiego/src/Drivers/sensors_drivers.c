@@ -21,7 +21,7 @@ void InitSensores()
 	AD0CR &= 0x00000100;
 	//4.- Configuro los pines del ADC0
 	//ADC0.1: Inicializo NTC
-	setPinSel(PORT_H2O,PIN_H2O,1);
+	setPinSel(PORT_H2O,PIN_H2O,3);
 	set_dir(PORT_H2O,PIN_H2O,0);
 	setPinSel(PORT_NTC,PIN_NTC,1);
 	set_dir(PORT_NTC,PIN_NTC,0);

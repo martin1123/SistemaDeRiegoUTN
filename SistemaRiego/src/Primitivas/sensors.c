@@ -14,7 +14,7 @@ int getTemp(int t)
 	static int result = 0;
 	if((result = getSensorValue(AD0DR1,result)))
 	{
-		return result;
+		return convertToTemp(result);
 	}
 
 	return t;

@@ -40,10 +40,20 @@ void Receive_Reposo(void)
 void Receiving(void)
 {
 	static uint8_t i = 0;
+	static uint8_t intentos = 10; //Intentos de recepcion. Si a los 10 no llega a recibir la traa completa corta todo.
 	static uint8_t trama[BUFF_TRAMA_SZ];
-	int dato,j;
+	int dato,j, banderaError;
 	uint8_t sz, cpos, scpos;
 
+	banderaError = 0; //Debido a un error detectado que se saltea lineas de codigo de un ciclo for, se tuvo que recurrir a un metodo poco convencional para resolver el bug.
+
+	if(intentos-- == 0){
+		//Se acabaron intentos. Se pasa a estado de reposo y se elimina la trama
+		intentos = 10;
+		i = 0;
+		r_state = R_REPOSO;
+		return;
+	}
 
 	//Si i es igual a 0 asigno el byte de start para tener la trama completa y verifico si se recibio el byte que indica size del comando, subcomando y datos
 	if(!i)
@@ -69,13 +79,26 @@ void Receiving(void)
 	//Va llenando la trama con los datos de recepción hasta que la cola quede vacía, o hasta que se encuentre byte de stop
 	for(; i < sz && (dato = PopRx()) >= 0; i++)
 	{
+		banderaError = 1;
 		trama[i] = (uint8_t) dato;
 		//Verifico si llego byte de stop, y que además llegue en la posición esperada
 		if(dato == B_STOP && i == (sz-1))
 			break;
 	}
 
+	if(banderaError == 0){
 
+		//Va llenando la trama con los datos de recepción hasta que la cola quede vacía, o hasta que se encuentre byte de stop
+			for(; i < sz && (dato = PopRx()) >= 0; i++)
+			{
+				banderaError = 1;
+				trama[i] = (uint8_t) dato;
+				//Verifico si llego byte de stop, y que además llegue en la posición esperada
+				if(dato == B_STOP && i == (sz-1))
+					break;
+			}
+
+	}
 	//Si se da este caso, es porque hubo una desincronización. No pueden venir mas de 255 bytes en total.
 	if(i >= sz)
 	{
