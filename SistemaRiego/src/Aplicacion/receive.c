@@ -10,6 +10,23 @@
 #include "infotronic.h"
 #include "receive.h"
 
+/**
+	\fn uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uint8_t *scpos)
+	\brief Funcion que verifica si el comando recibido es existente.
+
+	\details Verifica si los comandos recibidos existen en el fuente Commands.c
+
+	\param trama[in] trama de datos con el comando recibido
+	\param size_datos[in] size de la trama
+	\param *cpos[out] Posicion del comando recibido si es que se encontro
+	\param *scpos[out] Posicion del subcomando recibido si es que se encontro
+
+	\return uint8_t Devuelve 1 si encontro comando, sino 0.
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uint8_t *scpos)
 {
 	uint8_t sz_sub;
@@ -63,6 +80,23 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 
 }
 
+/**
+	\fn void executeCommand(uint8_t comm_pos, uint8_t scomm_pos, uint8_t * trama)
+	\brief Funcion que ejecuta los comandos recibidos
+
+	\details Una vez recibidos los comandos y verificados, se proceden a ejecutar las acciones correspondientes
+	         a cada uno en esta funcion.
+
+	\param comm_pos[in] posicion del comando en array de comandos
+	\param scomm_pos[in] posicion del subcomando en array correspondiente del subcomando
+	\param trama[in] trama con el comando a ejecutar
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void executeCommand(uint8_t comm_pos, uint8_t scomm_pos, uint8_t * trama)
 {
 	switch(commands[comm_pos].command)
@@ -93,6 +127,22 @@ void executeCommand(uint8_t comm_pos, uint8_t scomm_pos, uint8_t * trama)
 	}
 }
 
+/**
+	\fn void enableUART(uint8_t scomm_pos, uint8_t * trama)
+	\brief Funcion que activa o desactiva el envio de datos del LPC por UART segun el comando recibido.
+
+	\details Una vez recibidos los comandos y verificados, se proceden a ejecutar las acciones correspondientes
+	         a cada uno en esta funcion.
+
+	\param scomm_pos[in] posicion del subcomando en array correspondiente del subcomando
+	\param trama[in] trama con el comando a ejecutar
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void enableUART(uint8_t scomm_pos, uint8_t * trama){
 	switch(commands[POS_COM_INFORM].sub[scomm_pos].subCommand){
 		case SUB_CONN_PC:
@@ -110,6 +160,21 @@ void enableUART(uint8_t scomm_pos, uint8_t * trama){
 	}
 }
 
+/**
+	\fn void config(uint8_t scomm_pos, uint8_t * trama)
+	\brief Funcion para la ejecucion de los comandos de configuracion.
+
+	\details
+
+	\param scomm_pos[in] posicion del subcomando en array correspondiente del subcomando
+	\param trama[in] trama con el comando a ejecutar
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void config(uint8_t scomm_pos, uint8_t * trama)
 {
 	switch(commands[POS_COM_CONF].sub[scomm_pos].subCommand)
@@ -147,23 +212,42 @@ void config(uint8_t scomm_pos, uint8_t * trama)
 	}
 }
 
+/**
+	\fn void query(uint8_t scomm_pos)
+	\brief Funcion para la ejecucion de los comandos de consulta de datos persistentes.
+
+	\details Segun los datos que se consulten desde la PC, se realizan las acciones necesarias
+	         para el envio de dichos datos.
+
+	\param scomm_pos[in] posicion del subcomando a ejecutar de consulta
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void query(uint8_t scomm_pos)
 {
 	switch(commands[POS_COM_QUERY].sub->subCommand)
 	{
 		case SUB_TIME_R:
+			//Transmite a la PC la configuracion del tiempo de regado
 			TRANSMIT_TIME_REGADO = ON;
 			break;
 
 		case SUB_UMBRAL_H:
+			//Transmite a la PC la configuracion del umbral de humedad
 			TRANSMIT_UMBRAL_HUM = ON;
 			break;
 
 		case SUB_UMRAL_H2O:
+			//Transmite a la PC la configuracion del umbral de agua minimo
 			TRANSMIT_UMBRAL_H2O = ON;
 			break;
 
 		case SUB_UMRAL_TEMP:
+			//Transmite a la PC la configuracion del umbral de temperatura maximo
 			TRANSMIT_UMBRAL_TEMP = ON;
 			break;
 

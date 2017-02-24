@@ -65,5 +65,5 @@ uint8_t convertToHum(int n)
 uint8_t convertToLvlH2O(uint16_t n)
 {
 	//Supone que es una conversión lineal. Un valor de 4095 es un 100%
-	return (uint8_t)(n*100/4095);
+	return (uint8_t)(n*100/4095)*2;
 }
