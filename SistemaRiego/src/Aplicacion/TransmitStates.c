@@ -153,13 +153,13 @@ void restartTimer(void)
 	switch(dataToTrans)
 	{
 		case TRANS_TEMP:
-			TimerStart(TIMER_EV_UART_TEMP, 11);
+			TimerStart(TIMER_EV_UART_TEMP, 50);
 			break;
 		case TRANS_HUM:
-			TimerStart(TIMER_EV_UART_HUM, 7);
+			TimerStart(TIMER_EV_UART_HUM, 35);
 			break;
 		case TRANS_LVLH2O:
-			TimerStart(TIMER_EV_UART_H2O, 3);
+			TimerStart(TIMER_EV_UART_H2O, 25);
 			break;
 		default:
 			break;

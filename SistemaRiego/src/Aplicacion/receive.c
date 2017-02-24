@@ -32,7 +32,7 @@ uint8_t verificarComando(uint8_t * trama, uint8_t size_datos, uint8_t *cpos, uin
 			sz_sub = SIZE_SUB_INFORMAR;
 			break;
 		case COM_ACK:
-			sz_sub = SIZE_SUB_ACK;
+			return 1;
 			break;
 		case COM_REGAR:
 			sz_sub = SIZE_SUB_REGAR;

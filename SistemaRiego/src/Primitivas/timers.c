@@ -69,9 +69,9 @@ void initTimers()
 	 * En principio, este es el unico timer que se va a utilizar*/
 
 	TimerStart(TIMER_EV_DISPLAY, 50); /*Refresco de pantalla cada 5 segundos*/
-	TimerStart(TIMER_EV_UART_TEMP, 11);/*Enviar informacion de la temperatura cada 1100ms*/
-	TimerStart(TIMER_EV_UART_HUM, 7);/*Enviar informacion de la humedad cada 700ms*/
-	TimerStart(TIMER_EV_UART_H2O, 3);/*Enviar informacion del nivel de agua cada 300ms*/
+	TimerStart(TIMER_EV_UART_TEMP, 50);/*Enviar informacion de la temperatura cada 5000ms*/
+	TimerStart(TIMER_EV_UART_HUM, 30);/*Enviar informacion de la humedad cada 3000ms*/
+	TimerStart(TIMER_EV_UART_H2O, 23);/*Enviar informacion del nivel de agua cada 2300ms*/
 }
 
 void TimerStop(uint8_t ev)

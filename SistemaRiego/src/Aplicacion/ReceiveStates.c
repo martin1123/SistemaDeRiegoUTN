@@ -43,7 +43,8 @@ void Receiving(void)
 	static uint8_t intentos = 10; //Intentos de recepcion. Si a los 10 no llega a recibir la traa completa corta todo.
 	static uint8_t trama[BUFF_TRAMA_SZ];
 	int dato,j, banderaError;
-	uint8_t sz, cpos, scpos;
+	uint8_t cpos, scpos;
+	int sz;
 
 	banderaError = 0; //Debido a un error detectado que se saltea lineas de codigo de un ciclo for, se tuvo que recurrir a un metodo poco convencional para resolver el bug.
 
@@ -68,7 +69,7 @@ void Receiving(void)
 		if(dato>=0)
 		{
 			trama[++i] = (uint8_t)dato;
-			sz = (uint8_t)dato + 4; //Size de la trama a recibir
+			sz = dato + 4; //Size de la trama a recibir
 			i++;
 		}
 		else
@@ -103,6 +104,7 @@ void Receiving(void)
 	if(i >= sz)
 	{
 		// Informar ERROR. No se transmite ACK. Se espera restransmision del dato.
+		intentos = 10;
 		i = 0;
 		r_state = R_REPOSO;
 		return;
@@ -124,11 +126,14 @@ void Receiving(void)
 				executeCommand(cpos,scpos,trama+4);
 
 			i = 0;
+			intentos = 10;
 		}
 		else
 		{
 			//INFORMAR ERROR
 			i = 0;
+			intentos = 10;
+			r_state = R_REPOSO;
 		}
 	}
 }
