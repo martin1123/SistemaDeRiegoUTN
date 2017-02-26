@@ -50,9 +50,9 @@ int convertToTemp(int n)
 {
 	double Temp, rt, volt;
 
-	volt= 5 / 4095 * n; //Voltaje recibido
-	rt = ((5/volt)-1)*10000; //Resistencia Thermistor
-    Temp = 1.0 /(A+(B*log(rt)+(C*powf(log(rt),3)))); //Temperatura
+	volt= 5.0 / 4095.0 * n; //Voltaje recibido
+	rt = ((5.0/volt)-1.0)*10000.0; //Resistencia Thermistor
+    Temp = 1.0 /(A+(B*log(rt)+(C*powf(log(rt),3.0)))); //Temperatura
 
     return (int)Temp;  // Return the Temperature
 
