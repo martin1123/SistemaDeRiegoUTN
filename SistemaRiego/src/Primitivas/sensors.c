@@ -9,6 +9,10 @@
 #include "sensors.h"
 #include <math.h>
 
+#define A 0.00112924
+#define B 0.000234108
+#define C 0.000000087755
+
 int getTemp(int t)
 {
 	static int result = 0;
@@ -44,11 +48,11 @@ uint8_t getlvlH2O(uint8_t lvl)
 
 int convertToTemp(int n)
 {
-	float Rtherm, Temp;
+	double Temp, rt, volt;
 
-    Rtherm = 10000 / (4096 / n - 1.0);
-
-    Temp = (1.0 / (log(Rtherm/10000)/4050)+(1.0/298.15)) - 273.15;
+	volt= 5 / 4095 * n; //Voltaje recibido
+	rt = ((5/volt)-1)*10000; //Resistencia Thermistor
+    Temp = 1.0 /(A+(B*log(rt)+(C*powf(log(rts),3)))); //Temperatura
 
     return (int)Temp;  // Return the Temperature
 
