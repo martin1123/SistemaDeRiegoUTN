@@ -63,21 +63,25 @@ uint8_t armarTrama(uint8_t *trama, enum transmitData s)
 		case TRANS_UMBRAL_H2O:
 			pos_command = POS_COM_CONF;
 			pos_subcommand = POS_SUBCOM_UMBRAL_H2O;
+			trama[4] = umbral_H2O;
 			break;
 
 		case TRANS_UMBRAL_HUM:
 			pos_command = POS_COM_CONF;
 			pos_subcommand = POS_SUBCOM_UMBRAL_HUM;
+			trama[4] = umbral_humedad;
 			break;
 
 		case TRANS_UMBRAL_TEMP:
 			pos_command = POS_COM_CONF;
 			pos_subcommand = POS_SUBCOM_UMBRAL_TEMP;
+			trama[4] = umbral_temp;
 			break;
 
 		case TRANS_TIME_REG:
 			pos_command = POS_COM_CONF;
 			pos_subcommand = POS_SUBCOM_TIME_REG;
+			trama[4] = timer_regado;
 			break;
 
 		case TRANS_ACK:

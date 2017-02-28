@@ -35,7 +35,7 @@ sub_command_t sub_informar[] = {{SUB_HUMEDAD,1},{SUB_TEMP,1},{SUB_LVLH2O,1},{SUB
  * SUB_HORA:       Subcomando que configura la hora del LPC. Este mensaje se envia desde la PC al LPC. Se utilizan 3 bytes, uno para la hora, otro para los minutos, y otro para los segundos.
  * SUB_FECHA:      Subcomando que configura la fecha del LPC. Este mensaje se envia desde la PC al LPC. Se utilizan 4 bytes. 2 para representar el año, 1 para el mes, y otro para el día.
  */
-sub_command_t sub_configurar[] = {{SUB_UMBRAL_H,1},{SUB_TIME_R,2},{SUB_UMRAL_H2O,1},{SUB_UMRAL_TEMP,1},{SUB_HORA,3},{SUB_FECHA,4}};
+sub_command_t sub_configurar[] = {{SUB_UMBRAL_H,1},{SUB_TIME_R,1},{SUB_UMRAL_H2O,1},{SUB_UMRAL_TEMP,1},{SUB_HORA,3},{SUB_FECHA,4}};
 
 /*=======================================================*
  *            Sub Comandos del comando regar             *
