@@ -229,7 +229,7 @@ void config(uint8_t scomm_pos, uint8_t * trama)
 */
 void query(uint8_t scomm_pos)
 {
-	switch(commands[POS_COM_QUERY].sub->subCommand)
+	switch(commands[POS_COM_QUERY].sub[scomm_pos].subCommand)
 	{
 		case SUB_TIME_R:
 			//Transmite a la PC la configuracion del tiempo de regado
