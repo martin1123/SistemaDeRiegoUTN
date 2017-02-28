@@ -56,7 +56,7 @@
 #define POS_SUBCOM_FECHA       5
 
 //Tamaño del vector de las estruturas
-#define SIZE_COMMANDS       4
+#define SIZE_COMMANDS       5
 #define SIZE_SUB_INFORMAR   6
 #define SIZE_SUB_CONFIGURAR 6
 #define SIZE_SUB_QUERY      4
