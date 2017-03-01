@@ -14,6 +14,21 @@
 #define SZ_CONTROL 4
 #define POS_INI_DATA 2
 
+/**
+	\fn uint8_t isEnabledUART()
+	\brief Funcion que verifica si esta habilitado el envio de datos por UART
+
+	\details Con esta funcion se verifica que mientras no haya ningun dispositivo conectado que entienda
+	         el protocolo del sistema, no se va transimitir ningun tipo de datos.
+
+	\param trama[in] void
+
+	\return uint8_t Devuelve 1 si hay un dispositivo conectado por UART que entiende el protocolo, sino 0.
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 uint8_t isEnabledUART()
 {
 	return UART_STATUS;
@@ -22,6 +37,22 @@ uint8_t isEnabledUART()
 /*Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
  * dato es el dato a enviar, y sz es el tamaño del dato*/
 
+/**
+	\fn uint8_t armarTrama(uint8_t *trama, enum transmitData s)
+	\brief Funcion que verifica si esta habilitado el envio de datos por UART
+
+	\details Funcion que arma la trama a enviar. Retorna un puntero a la trama o en caso de error retorna NULL.
+             dato es el dato a enviar, y sz es el tamaño del dato
+
+	\param [out] uint8_t* trama: Trama a enviar
+	\param [in] enum transmitData s: Indica dato a transmitir
+
+	\return uint8_t Devuelve el size de la trama si se pudo armar correctamente, sino 0.
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 uint8_t armarTrama(uint8_t *trama, enum transmitData s)
 {
 	uint8_t sz, pos_command, pos_subcommand;
@@ -105,6 +136,22 @@ uint8_t armarTrama(uint8_t *trama, enum transmitData s)
 	return 2 + sz + 2; //Retorna size de la trama
 }
 
+/**
+	\fn uint8_t calc_checksum(uint8_t * dato, uint8_t size)
+	\brief Funcion que calcula checksum de los datos a enviar
+
+	\details Funcion que calcula el checksum del comando a enviar, o del comando recibido segun el protocolo especificado en
+	         el manual del sistema de riego.
+
+	\param [in] uint8_t* dato: Comando a partir del cual se calcula checksum
+	\param [in] uint8_t size: size del comando del cual se va a calcular el checksum
+
+	\return uint8_t Devuelve checksum calculado.
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 {
 	uint32_t sum;
@@ -116,6 +163,21 @@ uint8_t calc_checksum(uint8_t * dato, uint8_t size)
 	return (uint8_t) (sum % 256);
 }
 
+/**
+	\fn void transmitir (uint8_t *p, uint8_t sz)
+	\brief Funcion que envia datos byte por byte a la cola de transmision
+
+	\details
+
+	\param [in] uint8_t* p: Trama a transmitir
+	\param [in] uint8_t size: size de la trama a transmitir
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void transmitir (uint8_t *p, uint8_t sz)
 {
     uint32_t i;

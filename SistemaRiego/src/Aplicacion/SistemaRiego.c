@@ -50,8 +50,8 @@ volatile uint8_t bufferRxFull = OFF;
 /*FLAGS de sensores*/
 volatile flagST_t flag_H2OBajo = OFF; //Configurado en ON. Configurar en OFF cuando se detecte nivel de agua estable
 volatile flagST_t flag_regar = OFF; //Configurado en ON. Configurar en OFF cuando se termine de regar. Recordar activar por presionar boton d eriego o por PC mediante UART.
-volatile flagST_t flag_timerDisplay = OFF; //Configurar coomo timer 1
-volatile flagST_t timer_h2o = OFF; //Configurar. Ver que uso se le puede dar
+volatile flagST_t flag_timerDisplay = OFF; //Configurar como timer 1
+volatile flagST_t timer_h2o = OFF; //Configurar.
 volatile flagST_t timer_RiegoFinalizado = OFF; //Configurar co
 volatile flagST_t UART_STATUS = OFF;//Flag que indica si hay un dispositivo conectado mediante UART
 volatile flagST_t TRANSMIT_H = OFF;
@@ -112,7 +112,23 @@ int main (void)
 	return 0;
 }
 
-/**/
+/**
+	\fn void ActualizarDatos ( void )
+	\brief Funcion que actualiza temperatura, humedad, y nivel de agua.
+
+	\details Funcion que obtiene los valores de la temperatura, humedad, y nivel de agua de los sensores.
+	         Ademas, en caso de haber un nivel de humedad menor al umbral de humedad minimo, o un nivel de agua
+	         bajo, activa los flags correspondientes para avisar que la humedad o el nivel de agua son bajos a el resto
+	         de las maquinas de estado del sistema.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void ActualizarDatos ( void )
 {
 	temp = (uint16_t)getTemp(temp);

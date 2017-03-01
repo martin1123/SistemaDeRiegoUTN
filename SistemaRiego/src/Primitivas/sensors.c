@@ -9,6 +9,7 @@
 #include "sensors.h"
 #include <math.h>
 
+/*Constantes para la conversion de la temperatura*/
 #define A 0.00112924
 #define B 0.000234108
 #define C 0.000000087755

@@ -16,11 +16,41 @@
 void (*RMV[])(void) = {Receive_Reposo, Receiving};
 enum receiveState r_state = R_REPOSO;
 
+/**
+	\fn void Receive_Machine(void)
+	\brief Punto de entrada a la maquina de estado de recepcion
+
+	\details Segun el flag r_state, se indica la funcion a llamar del estado que se debe ejecutar.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void Receive_Machine(void)
 {
 	RMV[r_state]();
 }
 
+
+/**
+	\fn void Receive_Reposo(void)
+	\brief Estado de reposo de la maquina de recepcion.
+
+	\details Esta funcion indica que no se estan recibiendo datos. Si se recibe un byte que sea igual
+	         al byte de start(leer protocolo de comunicacion), se pasa al estado de recepcion.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void Receive_Reposo(void)
 {
 	int d;
@@ -37,6 +67,23 @@ void Receive_Reposo(void)
 	}
 }
 
+/**
+	\fn void Receiving(void)
+	\brief Estado de recepcion de datos
+
+	\details Esta funcion se encarga de recibir toda la trama que se este recibiendo, reconocer si la informacion recibida
+	         corresponde a un comando valido, y en caso de serlo, ejecutar el comando. Luego de ejecutar el comando se pasa al
+	         estado de recepcion.
+	         En caso de error se termina la recepcion de datos y se vuelve al estado de reposo.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void Receiving(void)
 {
 	static uint8_t i = 0;

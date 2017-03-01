@@ -21,11 +21,45 @@ void (*TMV[])() = {no_transmit,transmit_data,transmitAck,confirmTransmission};
 enum transmitState t_state = STATE_NO_TRANS;
 enum transmitData dataToTrans = NO_DATA;
 
+/**
+	\fn void Transmit_Machine(void)
+	\brief Punto de entrada a la maquina de estado de transmision
+
+	\details Segun el flag t_state, se indica la funcion a llamar del estado que se debe ejecutar.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void Transmit_Machine(void)
 {
 	TMV[t_state]();
 }
 
+/**
+	\fn void no_transmit(void)
+	\brief Estado de reposo de la maquina de transmision.
+
+	\details Esta funcion indica que no se estan transmitiendo datos. Mientras la funcion isEnabledUART() no retorne u valor
+	         distinto de 0, no se transmitira ningun dato, ya que esto significa que no hay conectado ningun dispositivo
+	         que entienda el protocolo de comunicacion.
+	         En caso de retornar un valor distinto de 0, se habilitara la transmision de datos. Periodicamente se transmitiran
+	         la temperatura, humedad, y nivel de agua detectados por los sensores analogicos, aunque tambien se puede
+	         transmitir otro tipo de informacion.
+	         En caso de tener que transmitirse un dato, se pasara al estado de tranmision.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void no_transmit(void)
 {
 	/*Si no hay dispositivos conectados a la UART no transmite*/
@@ -82,6 +116,24 @@ void no_transmit(void)
 	}
 }
 
+/**
+	\fn void transmit_data(void)
+	\brief Estado que indica que se estan transmitiendo datos.
+
+	\details Esta funcion indica un estado generico que indica que se estan transmitiendo datos, sin importar
+	         que tipo de comando o dato se este transmitiendo. En caso de ocurrir algun error, se pasa al estado de reposo
+	          o no transmision, y en caso de transmitirse el dato correctamente, se pasa al estado de confirmaimacion de ACK,
+	          donde se va a esperar una confirmacion por parte del dispositivo conectado por UARt para verificar la correcta recepcion
+	          de los datos.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void transmit_data(void)
 {
 	uint8_t trama[BUFF_TRAMA_SZ];
@@ -98,8 +150,21 @@ void transmit_data(void)
 		t_state = STATE_NO_TRANS;
 }
 
-/*Para este estado de transmision en particular, no se contempla que se reciba una confirmacion desde el otro dispositivo
- * ya que en si, el envío de un ack, es una confirmación de que se recibio un mensaje.*/
+/**
+	\fn void transmitAck(void)
+	\brief Estado que indica que se transmitira un ack en respuesta a la recepcion de un comando.
+
+	\details Para este estado de transmision en particular, no se contempla que se reciba una confirmacion desde el otro dispositivo
+             ya que en si, el envío de un ack, es una confirmación de que se recibio un mensaje
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void transmitAck(void)
 {
 	uint8_t sz;
@@ -110,7 +175,24 @@ void transmitAck(void)
 	t_state = STATE_NO_TRANS; //Se directamente al estado de reposo
 }
 
-/*Estado que queda a la espera de que se reciba el ack por el dato transmitido*/
+/**
+	\fn void confirmTransmission(void)
+	\brief Estado que queda a la espera de que se reciba el ack por el dato transmitido
+
+	\details Se permanece dentro de este estado hasta que se reciba un ack por parte del dispositivo conectado por UART
+	         para confirmar la correcta recepcion de datos. En caso de recibir el ack, se pasa al estado de reposo o no transmision.
+	         En caso de pasar un tiempo considerable sin respuesta, se vuelve al estado de transmision para reenviar el dato.
+	         Esto sucede hasta 2 veces. Luego de los 2 reintentos de transmision sin respuesta alguna, se pasa al estado de reposo,
+	         para no generar un bloqueo y liberar a la maquina de transmision para poder seguir transmitiendo otros datos.
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void confirmTransmission(void)
 {
 	static uint8_t reintentos = 2;
@@ -147,7 +229,21 @@ void confirmTransmission(void)
 	}
 }
 
+/**
+	\fn void restartTimer(void)
+	\brief Funcion que restartea los timers correspondientes de notificacion de temperatura, humedad, o nivel de agua
+	       por UART.
 
+	\details
+
+	\param trama[in] void
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void restartTimer(void)
 {
 	switch(dataToTrans)
