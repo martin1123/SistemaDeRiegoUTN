@@ -23,14 +23,16 @@ void InitSensores()
 	//ADC0.1: Inicializo NTC
 	setPinSel(PORT_H2O,PIN_H2O,3);
 	set_dir(PORT_H2O,PIN_H2O,0);
-	setPinSel(PORT_NTC,PIN_NTC,3);
+	setPinSel(PORT_NTC,PIN_NTC,1);
 	set_dir(PORT_NTC,PIN_NTC,0);
-	setPinSel(PORT_HUM,PIN_HUM,3);
+	setPinSel(PORT_HUM,PIN_HUM,1);
 	set_dir(PORT_HUM,PIN_HUM,0);
 	//5.- NO ACTIVO LAS INTERRUPCIONES:
 	AD0INTEN &= 0xFFFFFE00;
 	//6.- Selecciono que voy a tomar muestras del canal AD0.5, AD0.1 Y AD0.2 (00100110)
-	AD0CR |= 0x00000026;
+	AD0CR |= 0x00000002;// Funciona para temperatura
+	AD0CR |= 0x00000004;//Para humedad
+	AD0CR |= 0x00000020;//Sensor de nivel de agua
 	//7.- Activo el ADC (PDN = 1):
 	AD0CR |= 1<<21;
 	//8.- Selecciono que el ADC muestree solo, con BURST = 1 y START = 000:
@@ -40,13 +42,12 @@ void InitSensores()
 
 }
 
-int getSensorValue(int registro)
+int getSensorValue(int registro, int valor)
 {
-	static int resultado = 0;
 
 	if ( ADC_DONE (registro) ){ //Verifico nivel H2O
-		resultado = ( registro >> 4 ) & 0x0000FFFF;
+		valor = ( registro >> 4 ) & 0x0000FFFF;
 	}
 
-	return resultado;
+	return valor;
 }

@@ -8,8 +8,9 @@
 
 #include "infotronic.h"
 
+/*Inicializacion del puerto y pin de la bomba de agua*/
 void InitBomba()
 {
-	//conf_gpio(PORT_BOMB,PORT_BOMB,OUT);
-	//setPin(PORT_BOMB,PORT_BOMB,0);
+	conf_gpio(PORT_BOMB,PIN_BOMB,OUT);
+	write_pin(PORT_BOMB,PIN_BOMB,0);
 }

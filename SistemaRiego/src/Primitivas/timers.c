@@ -51,7 +51,7 @@ void TimerEvent(void)
 	if(timer_events & ((uint8_t)0x01 << 5))
 	{
 		timer_events &= ~(0x01 << 5);
-		timer_Riego = ON;
+		timer_RiegoFinalizado = ON;
 	}
 
 	/*Pregunto si vencio timer para la alarma por nivel bajo de agua*/
@@ -69,9 +69,9 @@ void initTimers()
 	 * En principio, este es el unico timer que se va a utilizar*/
 
 	TimerStart(TIMER_EV_DISPLAY, 50); /*Refresco de pantalla cada 5 segundos*/
-	TimerStart(TIMER_EV_UART_TEMP, 11);/*Enviar informacion de la temperatura cada 1100ms*/
-	TimerStart(TIMER_EV_UART_HUM, 7);/*Enviar informacion de la humedad cada 700ms*/
-	TimerStart(TIMER_EV_UART_H2O, 3);/*Enviar informacion del nivel de agua cada 300ms*/
+	TimerStart(TIMER_EV_UART_TEMP, 50);/*Enviar informacion de la temperatura cada 5000ms*/
+	TimerStart(TIMER_EV_UART_HUM, 30);/*Enviar informacion de la humedad cada 3000ms*/
+	TimerStart(TIMER_EV_UART_H2O, 23);/*Enviar informacion del nivel de agua cada 2300ms*/
 }
 
 void TimerStop(uint8_t ev)
@@ -82,7 +82,7 @@ void TimerStop(uint8_t ev)
 	SYSTICK_PUNT->STCTRL |= (0x01 << 1); //TINCKINT ON
 }
 
-void TimerStart(uint8_t ev, uint8_t time)
+void TimerStart(uint8_t ev, uint16_t time)
 {
 	SYSTICK_PUNT->STCTRL &= ~(0x01 << 1); //TINCKINT OFF
 	timer_vector[ev] = time;

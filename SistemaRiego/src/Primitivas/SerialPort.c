@@ -41,7 +41,7 @@ int PushTx (unsigned char dato)
     {
         TxStart = 1;
         bufferTxEmpty = ON;
-        U1THR= PopTx();
+        U0THR= PopTx();
     }
 
     return 1;

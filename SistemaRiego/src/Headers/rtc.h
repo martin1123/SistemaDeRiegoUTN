@@ -41,12 +41,14 @@
 /*Registro de calibracion*/
 #define RTCCALIBRATION RTC[16]
 
+#define BACKUP_FLAG    0x56    //Valor que define si hay valores a restaurar en los registros de backup cuando se inicia el programa
+
 /*Registros de backup GPREG*/
-#define RTCGPREG0      RTC[17]
-#define RTCGPREG1      RTC[18]
-#define RTCGPREG2      RTC[19]
-#define RTCGPREG3      RTC[20]
-#define RTCGPREG4      RTC[21]
+#define RTCGPREG0      RTC[17] //Bandera. Si su valor es 0x56 ('V'), significa que hay registros guardados como backup
+#define RTCGPREG1      RTC[18] //Umbral minimo de agua
+#define RTCGPREG2      RTC[19] //Umbral de humedad
+#define RTCGPREG3      RTC[20] //Umbral temperatura
+#define RTCGPREG4      RTC[21] //Tiempo de riego
 
 /*Registros de alarmas*/
 #define RTCALSEC       RTC[24]
@@ -60,7 +62,7 @@
 
 #define PCRTC 9
 
-void init_rtc(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t dd, uint8_t mo, uint16_t yy);
+void init_rtc(void);
 
 void config_date_RTC(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t dd, uint8_t mo, uint16_t yy);
 

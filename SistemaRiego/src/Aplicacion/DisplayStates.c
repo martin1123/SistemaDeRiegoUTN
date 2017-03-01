@@ -16,17 +16,48 @@
 char msg_renglon[16];
 
 /*Display Machine Vector*/
-void (*DMV[])(void) = {showHyT,showH2O,showDateAndHour,showRiego,showH2OLow,showConfigDate};
+void (*DMV[])(void) = {showHyT,showH2O,showDateAndHour,showRiego,showH2OLow};
 
 /*States flag*/
 //Se inicia en el estado que muestra humedad y temperatura
 enum dispStates f_states = Disp_HyT;
 
+
+/**
+	\fn void Display_machine(void)
+	\brief Funcion de ingreo a la maquina de estados del display 16X2.
+
+	\details
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void Display_machine(void)
 {
 	DMV[f_states]();
 }
 
+
+/**
+	\fn void showHyT(void)h)
+	\brief Funcion que representa el estado de mostrar humedad y temperatura
+
+	\details Funcion que se encarga de mostrar la humedad y temperatura en el display hasta que se agote el tiempo
+	         de muestreo, se active el riego, o se detecte nivel de agua bajo.
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void showHyT(void)
 {
 	sprintf(msg_renglon, "Temp: %3d", temp);
@@ -46,13 +77,6 @@ void showHyT(void)
 		refreshLCD();
 		f_states = Disp_Riego;
 	}
-
-	else if(flag_config)
-	{
-		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
-		f_states = Disp_Config_Date;
-		refreshLCD();
-	}
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla el nivel de agua y se cambia estado de flag
@@ -66,6 +90,22 @@ void showHyT(void)
 	return;
 }
 
+
+/**
+	\fn void showH2O(void)
+	\brief Funcion que representa el estado de mostrar el nivel de agua
+
+	\details Funcion que se encarga de mostrar el nivel de agua en el display hasta que se agote el tiempo
+	         de muestreo, se active el riego, o se detecte nivel de agua bajo.
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void showH2O(void)
 {
 	sprintf(msg_renglon, "Nivel H2O: %3d\%", lvlH2O);
@@ -84,13 +124,6 @@ void showH2O(void)
 		//Se pasa al estado que muestra en pantalla un mensaje que indica que se esta regando
 		f_states = Disp_Riego;
 	}
-	else if(flag_config)
-	{
-		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
-		f_states = Disp_Config_Date;
-		refreshLCD();
-	}
-
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla la fecha y hora y se cambia estado de flag
@@ -103,6 +136,22 @@ void showH2O(void)
 	return;
 }
 
+
+/**
+	\fn void showDateAndHour(void)
+	\brief Funcion que representa el estado de la fecha y hora en el LCD.
+
+	\details Funcion que se encarga de mostrar la fecha y hora en el display hasta que se agote el tiempo
+	         de muestreo, se active el riego, o se detecte nivel de agua bajo.
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void showDateAndHour(void)
 {
 	sprintf(msg_renglon, "Fecha:%02d/%02d/%4d", RTCDOM, RTCMONTH, RTCYEAR);
@@ -123,12 +172,6 @@ void showDateAndHour(void)
 		f_states = Disp_Riego;
 		refreshLCD();
 	}
-	else if(flag_config)
-	{
-		//Se pasa al estado que muestra en pantalla La configuracion para la fecha y hora
-		f_states = Disp_Config_Date;
-		refreshLCD();
-	}
 	else if(flag_timerDisplay)
 	{
 		//Se pasa al estado que muestra en pantalla la humedad y temperatura y se cambia estado de flag
@@ -141,13 +184,22 @@ void showDateAndHour(void)
 	return;
 }
 
-void showConfigDate(void)
-{
-	refreshLCD();
-	//COMPLETAR!!!!!
-	f_states = Disp_Date_Hour;
-}
 
+/**
+	\fn void showH2OLow(void)
+	\brief Funcion que representa el estado de nivel de agua bajo en el LCD.
+
+	\details Funcion que se encarga de mostrar un mensaje que indique que el nivel de agua es bajo en el LCD hasta
+	         que el sensor de nivel detecte que se recargo el tanque.
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void showH2OLow(void)
 {
 	Display_lcd( "Nivel H2O bajo" , 0 , 0 );
@@ -162,6 +214,22 @@ void showH2OLow(void)
 	return;
 }
 
+
+/**
+	\fn void showH2OLow(void)
+	\brief Funcion que representa el estado de riego en el LCD.
+
+	\details Funcion que se encarga de mostrar un mensaje que indique que se esta regando. Se sale de este estado
+	         hasta que se termine el riego.
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void showRiego(void)
 {
 	Display_lcd( "Regando..." , 0 , 0 );
@@ -178,6 +246,21 @@ void showRiego(void)
 	return;
 }
 
+
+/**
+	\fn void refreshLCD(void)
+	\brief Funcion que refresca el display del LCD 16X2 con espacios.
+
+	\details
+
+	\param [in]
+
+	\return void
+
+	\author Grupo II, curso R2053
+
+	\version 1.0.0
+*/
 void refreshLCD(void)
 {
 	Display_lcd( SPACES , 0 , 0 );
