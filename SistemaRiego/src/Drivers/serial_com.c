@@ -15,8 +15,8 @@ void InitUART0 (void)
 	//3.- Registro U1LCR (0x4001000C) - transmision de 8 bits, 1 bit de stop, sin paridad, sin break cond, DLAB = 1:
 	U0LCR = 0x00000083;
 	//4.- Registros U1DLL (0x40010000) y U1DLM (0x40010004) - 9600 baudios:
-	U0DLM = 0X0A;
-	U0DLL = 0x2C;//0xD9;
+	U0DLM = 0;
+	U0DLL = 0xA3;//0xD9;
 	//5.- Registros PINSEL0 (0x4002C000) y PINSEL1 (0x4002C004) - habilitan las funciones especiales de los pines:
 	//TX1D : PIN ??	-> 		P0[2]	-> PINSEL0: 04:05
 	setPinSel(0,2,1);
